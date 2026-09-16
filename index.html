@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Ayushi Singh — Software Developer, Data Analyst & Software Engineer. Building interactive web applications, high-scale backends and data-driven systems.">
+  <title>Ayushi Singh — Software Developer & Data Analyst</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
+</head>
+
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <span class="nav-center">Ayushi Singh</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="btn-resume-nav" id="open-resume-nav" title="View Ayushi's Resume">
+      <span>📎</span> Resume
+    </button>
+  </nav>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="hero">
+    <h1 class="hero-heading chrome-text">HI, I'M AYUSHI</h1>
+
+    <div class="hero-character-wrap">
+      <img src="assets/ayushi-avatar.jpg" alt="3D Stylized Avatar of Ayushi Singh" class="hero-character">
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-subtitle-box">
+        <div class="hero-typewriter-pill">
+          <span class="typewriter-icon-left">✏️</span>
+          <span class="typewriter-text" id="typewriter">Full Stack Software Engineer</span>
+        </div>
+        <p class="hero-subtitle"
+          style="color: #ffffff; text-transform: none; font-size: 13.5px; line-height: 1.7; max-width: 480px; font-weight: 400; letter-spacing: 0;">
+          Passionate about building scalable, deployed web applications, integrating smart Generative AI & Gemini models
+          to solve real-world problems, and writing clean, optimal code with C++ Data Structures & Algorithms.
+        </p>
+      </div>
+      <div class="hero-actions">
+        <button class="btn-gradient" id="hero-resume-btn">
+          <span>📄</span> View Resume
+        </button>
+        <a href="#contact" class="btn-outline-hero" id="hero-cta">Contact Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ME SECTION ===== -->
+  <section class="about" id="about">
+    <!-- Decorative 3D elements -->
+    <div class="about-decor decor-star">
+      <img src="assets/3d-star.jpg" alt="" aria-hidden="true">
+    </div>
+    <div class="about-decor decor-gem">
+      <img src="assets/3d-gem.jpg" alt="" aria-hidden="true">
+    </div>
+    <div class="about-decor decor-heart">
+      <img src="assets/3d-heart.jpg" alt="" aria-hidden="true">
+    </div>
+    <div class="about-decor decor-flower">
+      <img src="assets/3d-flower.jpg" alt="" aria-hidden="true">
+    </div>
+
+    <h2 class="about-heading chrome-text reveal">ABOUT ME</h2>
+    <p class="about-text reveal delay-1">
+      Computer Science engineer graduating in 2027 with a strong passion for Software Development, Data Analytics, and
+      Scalable Backend Systems.
+      From engineering full-stack production platforms with Node.js, React, and Docker to optimizing data processing
+      pipelines and AI-assisted tooling,
+      I love solving complex real-world problems through clean architecture and insightful analytics.
+    </p>
+    <div class="about-btn reveal delay-2">
+      <a href="#contact" class="btn-gradient">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES SECTION ===== -->
+  <section class="services" id="services">
+    <h2 class="services-heading chrome-text-dark reveal">SERVICES</h2>
+    <div class="services-list">
+      <div class="service-item reveal delay-1">
+        <span class="service-number chrome-text-dark">01</span>
+        <div class="service-content">
+          <h3 class="service-title">Software Development</h3>
+          <p class="service-desc">
+            Architecting robust, modular backends and scalable microservices using Node.js, Express, Python, and RESTful
+            APIs, with secure authentication, rate-limiting, and relational/NoSQL data persistence.
+          </p>
+        </div>
+      </div>
+      <div class="service-item reveal delay-2">
+        <span class="service-number chrome-text-dark">02</span>
+        <div class="service-content">
+          <h3 class="service-title">Interactive Web Applications</h3>
+          <p class="service-desc">
+            Crafting ultra-responsive, dynamic web interfaces with React, Vite, Tailwind CSS, and Framer Motion,
+            engineered for seamless UX, real-time interactivity, and cross-device performance.
+          </p>
+        </div>
+      </div>
+      <div class="service-item reveal delay-3">
+        <span class="service-number chrome-text-dark">03</span>
+        <div class="service-content">
+          <h3 class="service-title">Data Analytics & Intelligence</h3>
+          <p class="service-desc">
+            Transforming multi-channel telemetry and behavioral metrics into actionable intelligence through SQL
+            pipelines, automated reporting, customer clustering, and predictive visualization dashboards.
+          </p>
+        </div>
+      </div>
+      <div class="service-item reveal delay-4">
+        <span class="service-number chrome-text-dark">04</span>
+        <div class="service-content">
+          <h3 class="service-title">AI & Vision Integration</h3>
+          <p class="service-desc">
+            Solving real-world business challenges by integrating state-of-the-art AI models—incorporating Google Cloud
+            Vision OCR, Gemini multimodal reasoning, and automated AST vulnerability audits.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS SECTION ===== -->
+  <section class="projects" id="projects">
+    <h2 class="projects-main-title chrome-text reveal"
+      style="text-align: center; font-size: clamp(40px, 7vw, 90px); margin-bottom: 60px; font-weight: 900; letter-spacing: -2px;">
+      FEATURED PROJECTS</h2>
+    <div class="projects-list">
+
+      <!-- Project 01: Trishul -->
+      <div class="project-item reveal">
+        <div class="project-header" data-project="1">
+          <div class="project-left">
+            <span class="project-number">01</span>
+            <div class="project-info">
+              <span class="project-client-label">Trishul — Asset & Maintenance Management</span>
+              <span class="project-client-name">React 19, Vite, Tailwind, Framer Motion, Node.js, Express, SQLite,
+                Docker</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://trishul-eight.vercel.app/admin/analytics" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-1-live-btn">Live Project</a>
+            <a href="https://github.com/ayushi0618/kavach-" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-1-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-1">
+          <p class="project-desc-text">
+            Full-stack asset and maintenance tracking system developed for workshop operations. Features role-based
+            navigation, QR-based workflow audits, interactive analytics dashboards, database migrations with Drizzle
+            ORM, and secure containerized Docker deployment.
+          </p>
+          <div class="project-images">
+            <img src="assets/trishul-1.png" alt="Trishul 510 Army Base Workshop Portal" loading="lazy">
+            <img src="assets/trishul-3.png" alt="Trishul Command Center Analytics" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 02: DSA Daily Coach -->
+      <div class="project-item reveal delay-1">
+        <div class="project-header" data-project="2">
+          <div class="project-left">
+            <span class="project-number">02</span>
+            <div class="project-info">
+              <span class="project-client-label">DSA Daily Coach — Interactive Algo Platform</span>
+              <span class="project-client-name">React.js, TypeScript, Vite, Tailwind CSS, Gemini 2.5, Lucide
+                React</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://dsa-daily-coach.vercel.app/" target="_blank"
+              rel="noopener noreferrer" class="btn-outline" id="project-2-live-btn">Live App</a>
+            <a href="https://github.com/ayushi0618/DSA-daily-coach-" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-2-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-2">
+          <p class="project-desc-text">
+            A comprehensive, interactive platform for mastering Data Structures and Algorithms. Features an interactive
+            problem library filtered by companies/topics, split-pane coding workspace, AI DSA Socratic Tutor (Gemini
+            2.5), step-by-step animated visual lectures, and gamified progress tracking with mastery badges and streak
+            flames.
+          </p>
+          <div class="project-images">
+            <img src="assets/dsacoach-1.png" alt="DSA Daily Coach Profile & Mastery Badges" loading="lazy">
+            <img src="assets/dsacoach-3.png" alt="DSA Daily Coach AI Socratic Mentor Interface" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 03: Food for Mood AI -->
+      <div class="project-item reveal delay-2">
+        <div class="project-header" data-project="3">
+          <div class="project-left">
+            <span class="project-number">03</span>
+            <div class="project-info">
+              <span class="project-client-label">Food for Mood — AI-Powered Culinary Recommender</span>
+              <span class="project-client-name">Node.js, Express.js, Python, MongoDB, Gemini API, WebSockets</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://food-for-mood-v2.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-outline"
+              id="project-3-live-btn">Live Project</a>
+            <a href="https://github.com/ayushi0618/food-for-mood-v2" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-3-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-3">
+          <p class="project-desc-text">
+            Full-stack AI-driven recipe and meal recommendation platform tailoring dishes to real-time moods, emotions,
+            and cravings. Features real-time notifications with WebSockets, recommendation history analysis, cart and
+            order tracking, and Gemini AI evaluation pipelines.
+          </p>
+          <div class="project-images">
+            <img src="assets/foodformood-1.png" alt="Food for Mood Landing Page with Curated Recipes" loading="lazy">
+            <img src="assets/foodformood-2.png" alt="Food for Mood AI Mood Input & Dish Recommendation" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 04: Cyber Scanner -->
+      <div class="project-item reveal delay-1">
+        <div class="project-header" data-project="4">
+          <div class="project-left">
+            <span class="project-number">04</span>
+            <div class="project-info">
+              <span class="project-client-label">Cyber Scanner — Code Vulnerability Auditor</span>
+              <span class="project-client-name">Python, AST Security Parsing, Node.js, Render Cloud, Security
+                Standards</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://cyber-scanner.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn-outline"
+              id="project-4-live-btn">Live Project</a>
+            <a href="https://github.com/ayushi0618/cyber_scanner" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-4-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-4">
+          <p class="project-desc-text">
+            Automated code security vulnerability analyzer designed to protect systems from threats. Supports
+            multi-file/folder uploads, AST token analysis for detecting SQL injections and security flaws, real-time
+            scanning analytics, and historical threat logs.
+          </p>
+          <div class="project-images">
+            <img src="assets/cyberscanner-2.png" alt="CyberScanner Threat Detection Overview & Features" loading="lazy">
+            <img src="assets/cyberscanner-1.png" alt="CyberScanner File & Folder Upload Scanner Interface"
+              loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 05: SnapSplit -->
+      <div class="project-item reveal delay-2">
+        <div class="project-header" data-project="5">
+          <div class="project-left">
+            <span class="project-number">05</span>
+            <div class="project-info">
+              <span class="project-client-label">SnapSplit — Automated Receipt Bill Splitter</span>
+              <span class="project-client-name">Google Cloud Vision API, Gemini OCR, Supabase, React, PostgreSQL
+                (WIP)</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/ayushi0618/SnapSplit" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-5-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-5">
+          <p class="project-desc-text">
+            Smart bill splitting tool utilizing Google Cloud Vision OCR and Gemini pipeline to parse complex restaurant
+            receipts, calculate itemized tax/tip allocations, and instantly sync multi-person expense ledgers into
+            Supabase PostgreSQL. Features instant item breakdown and live settlement tracking.
+          </p>
+          <div class="project-images">
+            <img src="assets/snapsplit-1.png" alt="SnapSplit OCR Receipt Extractor & Multi-Friend Split Engine"
+              loading="lazy">
+            <img src="assets/snapsplit-2.png" alt="SnapSplit Ledger Analytics & Instant UPI Settlement Log"
+              loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 06: Multi-channel Customer Behaviour & Marketing Intelligence -->
+      <div class="project-item reveal delay-3">
+        <div class="project-header" data-project="6">
+          <div class="project-left">
+            <span class="project-number">06</span>
+            <div class="project-info">
+              <span class="project-client-label">Multi-Channel Customer Behaviour & Marketing Intelligence</span>
+              <span class="project-client-name">Data Analytics, Python, SQL, Pandas, Scikit-learn, Tableau (WIP)</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/ayushi0618" target="_blank" rel="noopener noreferrer" class="btn-outline"
+              id="project-6-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-6">
+          <p class="project-desc-text">
+            End-to-end data analytics platform aggregating user touchpoints across web, email, and social ad funnels.
+            Performs RFM customer segmentation, predictive lifetime value (CLV) scoring, and conversion anomaly
+            detection for strategic marketing optimization.
+          </p>
+          <div class="project-images">
+            <img src="assets/marketing-1.png" alt="OmniChannel Intelligence & RFM Segmentation Dashboard"
+              loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 07: BondPoints -->
+      <div class="project-item reveal delay-4">
+        <div class="project-header" data-project="7">
+          <div class="project-left">
+            <span class="project-number">07</span>
+            <div class="project-info">
+              <span class="project-client-label">BondPoints — Loyalty & Emotional Resonance Rewards Network</span>
+              <span class="project-client-name">React, Node.js, MongoDB, WebSockets, Render Cloud, Resonance
+                Engine</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://bondpoints-ai-1.onrender.com/" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-7-live-btn">Live App</a>
+            <a href="https://github.com/ayushi0618/BondPoints.ai" target="_blank" rel="noopener noreferrer"
+              class="btn-outline" id="project-7-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-7">
+          <p class="project-desc-text">
+            Track your loyalty rewards effortlessly and make every point count! Connect all your loyalty programs in one
+            place, watch your points grow, and save time with instant redemption. Built with React, Node.js, MongoDB,
+            and deployed live on Render with floating particle connection animations.
+          </p>
+          <div class="project-images">
+            <img src="assets/bondpoints-1.png" alt="BondPoints Loyalty Platform Landing with Interactive Particle Graph"
+              loading="lazy">
+            <img src="assets/bondpoints-2.png" alt="BondPoints Account Registration Portal" loading="lazy">
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 08: BharatMandi -->
+      <div class="project-item reveal delay-5">
+        <div class="project-header" data-project="8">
+          <div class="project-left">
+            <span class="project-number">08</span>
+            <div class="project-info">
+              <span class="project-client-label">BharatMandi — Agricultural Commodity Price Intelligence</span>
+              <span class="project-client-name">Python, FastAPI, SQL, React, Recharts, Open Government Data
+                (Agmarknet)</span>
+            </div>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/ayushi0618" target="_blank" rel="noopener noreferrer" class="btn-outline"
+              id="project-8-btn">GitHub Repo</a>
+          </div>
+        </div>
+        <div class="project-gallery" id="gallery-8">
+          <p class="project-desc-text">
+            An indigenous Indian agri-fintech analytics portal tracking wholesale mandi commodity rates across UP and
+            NCR districts. Provides local farmers and traders with real-time price trend alerts, seasonal forecasting,
+            and bilingual mandi comparisons.
+          </p>
+          <div class="project-images">
+            <img src="assets/bharatmandi-1.png" alt="BharatMandi Commodity Rates & Price Forecast Dashboard"
+              loading="lazy">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SKILLS & EXPERIENCE SECTION ===== -->
+  <section class="skills-section" id="skills">
+    <div class="skills-container">
+      <h2 class="chrome-text reveal"
+        style="font-size: clamp(36px, 6vw, 72px); text-align: center; margin-bottom: 50px;">TECH ARSENAL & HIGHLIGHTS
+      </h2>
+
+      <div class="skills-grid">
+        <div class="skill-category-card reveal delay-1">
+          <h3 class="skill-cat-title">Languages & Core CS</h3>
+          <p class="skill-tags">Python • Java • C++ • JavaScript • SQL • Data Structures & Algorithms (150+ LeetCode) •
+            DBMS • Operating Systems • Computer Networks • OOP</p>
+        </div>
+
+        <div class="skill-category-card reveal delay-2">
+          <h3 class="skill-cat-title">Backend & Data</h3>
+          <p class="skill-tags">Node.js • Express.js • REST APIs • WebSockets • JWT • Zod • PostgreSQL • Supabase •
+            SQLite • MongoDB • Drizzle ORM • Data Pipelines</p>
+        </div>
+
+        <div class="skill-category-card reveal delay-3">
+          <h3 class="skill-cat-title">Frontend & UI/UX</h3>
+          <p class="skill-tags">React.js • Vite • Tailwind CSS • Framer Motion • Recharts • Lucide React • Responsive
+            Mobile-First Architecture</p>
+        </div>
+
+        <div class="skill-category-card reveal delay-4">
+          <h3 class="skill-cat-title">DevOps, AI & Tools</h3>
+          <p class="skill-tags">Docker • Git • GitHub • Postman • Vercel • Render • Gemini API • Google Cloud Vision OCR
+            • IBM Cybersecurity Certified</p>
+        </div>
+      </div>
+
+      <div class="experience-bar reveal delay-3">
+        <div class="exp-badge">Project Intern</div>
+        <div class="exp-details">
+          <h4>510 Army Base Workshop • Meerut, India</h4>
+          <ul class="exp-bullets">
+            <li>Contributed to a digital workflow project aimed at eliminating manual paperwork and enhancing
+              operational workshop efficiency.</li>
+            <li>Engineered software modules for internal record handling, structured process tracking, and relational
+              data management.</li>
+            <li>Collaborated under direct technical supervision on system implementation, security documentation, and
+              on-schedule delivery tasks.</li>
+            <li>Improved practical adoption of modern software-based workflows in a real-world military workshop
+              environment.</li>
+          </ul>
+          <div class="exp-tags-row">
+            <span class="exp-tag">Workflow Digitization</span>
+            <span class="exp-tag">Process Tracking</span>
+            <span class="exp-tag">Data Management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="contact-emoji">💡</div>
+        <div class="contact-hand">
+          <img src="assets/3d-hand.jpg" alt="" aria-hidden="true">
+        </div>
+        <h2 class="contact-heading reveal">LET'S<br>BUILD<br>TOGETHER</h2>
+        <a href="mailto:ayushi.singh0618@gmail.com" class="contact-email reveal delay-1">ayushi.singh0618@gmail.com</a>
+        <p class="contact-subinfo reveal delay-2">
+          📞 +91 8766315441<br>
+          📍 Ghaziabad, Uttar Pradesh, India
+        </p>
+      </div>
+      <form class="contact-form" id="contact-form">
+        <div class="form-group reveal delay-1">
+          <label for="contact-subject">Subject</label>
+          <input type="text" id="contact-subject" name="subject" placeholder="Collaboration / Job Opportunity" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group reveal delay-2">
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group reveal delay-2">
+            <label for="contact-phone">Phone</label>
+            <input type="tel" id="contact-phone" name="phone" placeholder="+91 XXXXXXXXXX">
+          </div>
+        </div>
+        <div class="form-group reveal delay-3">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" placeholder="Tell me about your project or role..."
+            required></textarea>
+        </div>
+        <button type="submit" class="btn-send reveal delay-4" id="contact-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer-top">
+      <div class="footer-name-wrap">
+        <h3 class="footer-name">AYUSHI<br>SINGH</h3>
+      </div>
+      <div class="footer-column">
+        <h4 class="footer-column-title">Profiles & Socials</h4>
+        <ul>
+          <li><a href="https://github.com/ayushi0618" target="_blank" rel="noopener noreferrer"
+              id="social-github">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/ayushi-singh-247126293/" target="_blank" rel="noopener noreferrer"
+              id="social-linkedin">LinkedIn</a></li>
+          <li><a href="https://leetcode.com/u/ayushi0618/" target="_blank" rel="noopener noreferrer"
+              id="social-leetcode">LeetCode</a></li>
+          <li><a href="https://ayushi-gray.vercel.app/" target="_blank" rel="noopener noreferrer"
+              id="social-portfolio">Live Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4 class="footer-column-title">Contact</h4>
+        <ul>
+          <li><a href="mailto:ayushi.singh0618@gmail.com">ayushi.singh0618@gmail.com</a></li>
+          <li><a href="tel:+918766315441">+91 8766315441</a></li>
+        </ul>
+        <address class="footer-address">
+          Ghaziabad, Uttar Pradesh<br>
+          India
+        </address>
+      </div>
+    </div>
+
+    <!-- Colorful geometric shapes -->
+    <div class="footer-shapes" aria-hidden="true">
+      <span class="shape shape-purple">✕</span>
+      <span class="shape shape-green">⁘</span>
+      <span class="shape shape-white">◗</span>
+      <span class="shape shape-orange">⟐</span>
+      <span class="shape shape-white">▷</span>
+      <span class="shape shape-purple">◉</span>
+      <span class="shape shape-orange">⬡</span>
+      <span class="shape shape-white">△</span>
+      <span class="shape shape-pink">◎</span>
+    </div>
+  </footer>
+
+  <!-- ===== VERIFIED RESUME MODAL ===== -->
+  <div id="resume-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-icon">📄</span>
+          <h3>Verified Resume • Ayushi Singh</h3>
+        </div>
+        <div class="modal-actions">
+          <button id="print-resume-btn" class="btn-gradient btn-sm">
+            <span>🖨️</span> Print / Save PDF
+          </button>
+          <button id="close-resume-btn" class="modal-close" aria-label="Close modal">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body" id="printable-resume">
+        <div class="resume-sheet">
+          <div class="res-head">
+            <h1 class="res-name">AYUSHI SINGH</h1>
+            <div class="res-sub">
+              <span>✉️ ayushi.singh0618@gmail.com</span> •
+              <span>📞 +91 8766315441</span> •
+              <span>📍 Ghaziabad, Uttar Pradesh</span>
+            </div>
+            <div class="res-links">
+              <a href="https://linkedin.com/in/ayushi-singh-247126293"
+                target="_blank">linkedin.com/in/ayushi-singh-247126293</a> •
+              <a href="https://github.com/ayushi0618" target="_blank">github.com/ayushi0618</a> •
+              <a href="https://leetcode.com/u/ayushi0618/" target="_blank">leetcode.com/u/ayushi0618</a> •
+              <a href="https://ayushi-gray.vercel.app/" target="_blank">ayushi-gray.vercel.app</a>
+            </div>
+          </div>
+
+          <div class="res-sec">
+            <h2 class="res-sec-title">Summary</h2>
+            <p class="res-text">
+              Computer Science student graduating in 2027 with backend and full-stack development experience. Built and
+              deployed real-world applications using React, Node.js, Express.js, SQLite, JWT, Docker, and REST APIs.
+              Strong foundation in Data Structures, Operating Systems, Database Management Systems, Computer Networks,
+              Object-Oriented Programming, and Python, with interest in software development, debugging, and scalable
+              system design.
+            </p>
+          </div>
+
+          <div class="res-sec">
+            <h2 class="res-sec-title">Experience</h2>
+            <div class="res-exp-item">
+              <div class="res-exp-head">
+                <span class="res-role">Project Intern</span>
+                <span class="res-company">510 Army Base Workshop • Meerut, India</span>
+                <span class="res-date">01/07/2026 – 31/07/2026</span>
+              </div>
+              <ul class="res-list">
+                <li>Contributed to a digital workflow project aimed at eliminating manual paperwork and enhancing
+                  operational workshop efficiency.</li>
+                <li>Engineered software modules for internal record handling, structured process tracking, and
+                  relational data management.</li>
+                <li>Collaborated under direct technical supervision on system implementation, security documentation,
+                  and on-schedule delivery tasks.</li>
+                <li>Improved practical adoption of modern software-based workflows in a real-world military workshop
+                  environment.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="res-sec">
+            <h2 class="res-sec-title">Education</h2>
+            <div class="res-edu-item">
+              <div class="res-exp-head">
+                <span class="res-role">B.Tech, Computer Science Engineering</span>
+                <span class="res-company">Babu Banarasi Das Institute of Technology, AKTU University</span>
+                <span class="res-date">Graduating 2027</span>
+              </div>
+              <p class="res-text"><strong>CGPA: 8.53</strong> (Academic Distinction)</p>
+            </div>
+          </div>
+
+          <div class="res-sec">
+            <h2 class="res-sec-title">Skills</h2>
+            <div class="res-skills">
+              <div><strong>Languages:</strong> Python, Java, C++, JavaScript, SQL</div>
+              <div><strong>Backend:</strong> Node.js, Express.js, REST APIs, WebSockets, JWT, Bcrypt.js, Zod</div>
+              <div><strong>Frontend:</strong> React.js, Vite, React Router DOM, Tailwind CSS, Framer Motion</div>
+              <div><strong>Databases:</strong> SQLite, MongoDB, PostgreSQL, Supabase, Drizzle ORM</div>
+              <div><strong>Tools:</strong> Git, GitHub, Postman, Docker, Vercel, Render, VS Code</div>
+              <div><strong>Core CS:</strong> Data Structures & Algorithms, Object-Oriented Programming, DBMS, Operating
+                Systems, Computer Networks, Distributed Systems</div>
+            </div>
+          </div>
+
+          <div class="res-sec">
+            <h2 class="res-sec-title">Key Projects</h2>
+            <div class="res-proj-item">
+              <strong>Trishul – Asset and Maintenance Management System</strong> (React 19, Vite, Tailwind, Node.js,
+              SQLite, Docker)<br>
+              Full-stack workshop operations platform with role-based navigation, QR workflows, and containerized Docker
+              deployment.
+            </div>
+            <div class="res-proj-item">
+              <strong>DSA Daily Coach</strong> (React.js, TypeScript, Vite, Tailwind CSS, Lucide React)<br>
+              Interactive problem library, split-pane coding workspace, AI tutor, visual lectures, and spaced repetition
+              flashcard vault.
+            </div>
+            <div class="res-proj-item">
+              <strong>Food for Mood AI</strong> (Node.js, Express.js, Python, MongoDB, Gemini API, WebSockets)<br>
+              AI-driven culinary recommendation platform matching meals to mood and cravings with real-time
+              notifications.
+            </div>
+            <div class="res-proj-item">
+              <strong>SnapSplit, BondPoints & Cyber Scanner</strong> (Google Cloud Vision API, Supabase, AST Security
+              Parsing, WebSockets)<br>
+              Automated receipt OCR with Vision AI, emotional resonance social network graph, and static vulnerability
+              scanning.
+            </div>
+          </div>
+
+          <div class="res-sec">
+            <h2 class="res-sec-title">Certifications & Achievements</h2>
+            <p class="res-text">
+              • IBM Cybersecurity Fundamentals • JPMorgan Software Engineering Job Simulation (Forage) • Azure AI
+              Fundamentals AI-900 (in progress)<br>
+              • 150+ LeetCode problems solved • University & National level hackathons and technical competitions
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
