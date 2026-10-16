@@ -1246,6 +1246,18 @@ img {
   max-width: 950px;
 }
 
+.experience-section {
+  background: var(--bg-dark);
+  padding: 100px 60px 120px;
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.experience-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
 .skills-section {
   background: var(--bg-dark);
   padding: 100px 60px 120px;
