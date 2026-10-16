@@ -821,10 +821,10 @@ img {
 
 .contact-hand {
   position: absolute;
-  top: -60px;
-  right: -20px;
-  width: 100px;
-  height: 100px;
+  top: -56px;
+  right: 30px;
+  width: 115px;
+  height: 115px;
   animation: floatSlow 4s ease-in-out infinite;
   z-index: 2;
 }
@@ -837,9 +837,9 @@ img {
 
 .contact-emoji {
   position: absolute;
-  top: -40px;
-  left: -10px;
-  font-size: 36px;
+  top: -30px;
+  left: -6px;
+  font-size: 42px;
   animation: floatSlow 3.5s ease-in-out infinite 0.5s;
 }
 
