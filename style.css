@@ -2392,3 +2392,114 @@ body.vapour-lock {
   .orbital-slot { transform: rotate(var(--start, 0deg)); }
   .orbital-node { rotate: calc(var(--start, 0deg) * -1); }
 }
+
+/* ===== EXPERIENCE PAGE: link buttons, descriptions, certifications ===== */
+.nav-links a.active {
+  color: #fff;
+}
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.exp-desc {
+  font-size: 14.5px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 8px 0 10px;
+  line-height: 1.6;
+}
+
+.exp-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 14px;
+}
+
+.exp-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.exp-link:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cert-section {
+  background: var(--bg-dark);
+  padding: 100px 60px 120px;
+  border-top: 1px solid var(--border-dark);
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.cert-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 24px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+.cert-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+.cert-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.cert-issuer {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 4px;
+}
+
+.cert-date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.6px;
+  margin-bottom: 12px;
+}
+
+.cert-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+}
+
+.cert-link:hover {
+  text-decoration-color: #fff;
+}
+
+@media (max-width: 900px) {
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .cert-grid { grid-template-columns: 1fr; }
+  .cert-section { padding: 70px 24px 90px; }
+}
+
+/* ===== anchored sections: keep headings clear of the fixed nav ===== */
+#about, #services, #projects, #experience, #skills, #contact, #journey, #certifications {
+  scroll-margin-top: 96px;
+}
