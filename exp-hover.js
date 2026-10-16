@@ -30,6 +30,12 @@
       title: 'Tata \u2014 GenAI Powered Data Analytics',
       desc: 'Forage virtual experience: GenAI-powered data analytics job simulation.',
       stack: 'Data Analytics \u2022 GenAI'
+    },
+    codelikelily: {
+      img: null,
+      title: 'Code Like Lily \u2014 YouTube',
+      desc: 'Animated coding explainers and interview-prep content: DSA visualized, AI topics, build-in-public dev journey.',
+      stack: 'Content Creation \u2022 DSA \u2022 Video Production'
     }
   };
 

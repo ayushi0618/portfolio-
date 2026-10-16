@@ -2503,3 +2503,74 @@ body.vapour-lock {
 #about, #services, #projects, #experience, #skills, #contact, #journey, #certifications {
   scroll-margin-top: 96px;
 }
+
+/* ===== EXPERIENCE PAGE: entry media + sticky stacking cards ===== */
+.experience-section .experience-list {
+  gap: 0;
+}
+.experience-section .experience-bar {
+  position: sticky;
+  background: #0d0d0f;
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.9), 0 25px 60px rgba(0, 0, 0, 0.95);
+  margin-bottom: 60px;
+  padding: 30px 34px;
+  transition: border-color 0.3s ease;
+}
+.experience-section .experience-bar:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.experience-section .experience-bar:nth-child(1) { top: 96px; z-index: 1; }
+.experience-section .experience-bar:nth-child(2) { top: 120px; z-index: 2; }
+.experience-section .experience-bar:nth-child(3) { top: 144px; z-index: 3; }
+.experience-section .experience-bar:nth-child(4) { top: 168px; z-index: 4; }
+.experience-section .experience-bar:nth-child(5) { top: 192px; z-index: 5; }
+
+.exp-media {
+  width: 148px;
+  height: 148px;
+  flex: none;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #0d0d0f;
+}
+.exp-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.exp-monogram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.exp-mono-play {
+  font-size: 26px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+}
+.exp-mono-sub {
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+  .experience-section .experience-bar:nth-child(1) { top: 80px; }
+  .experience-section .experience-bar:nth-child(2) { top: 96px; }
+  .experience-section .experience-bar:nth-child(3) { top: 112px; }
+  .experience-section .experience-bar:nth-child(4) { top: 128px; }
+  .experience-section .experience-bar:nth-child(5) { top: 144px; }
+  .exp-media {
+    width: 112px;
+    height: 112px;
+  }
+}
