@@ -43,7 +43,7 @@
     '    float fi = float(i);',
     '    float px = 0.60 * sin(t*(0.21 + 0.031*fi) + 1.7*fi);',
     '    float py = 0.36 * sin(t*(0.17 + 0.043*fi) + 2.3*fi + 1.1);',
-    '    float r  = 0.16 + 0.028*fi + 0.030*sin(t*(0.50 + 0.11*fi) + 3.1*fi);',
+    '    float r  = 0.10 + 0.016*fi + 0.018*sin(t*(0.50 + 0.11*fi) + 3.1*fi);',
     '    float di = length(uv - vec2(px, py)) - r;',
     '    d = smin(d, di, 0.16);',                // merge / separate smoothly
     '    float w = exp(-6.0 * max(di, 0.0));',    // per-blob color weight
@@ -150,7 +150,7 @@
       blobs.push({
         c: palette[i % palette.length],
         x: Math.random(), y: Math.random(),
-        r: 0.25 + Math.random() * 0.35,
+        r: 0.15 + Math.random() * 0.20,
         sx: 0.0004 + Math.random() * 0.0009,
         sy: 0.0003 + Math.random() * 0.0008,
         ph: Math.random() * Math.PI * 2
