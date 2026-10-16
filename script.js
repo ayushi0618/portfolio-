@@ -49,39 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // ===== 4. PROJECT STACKING PARALLAX ANIMATION (EXACT VIDEO MATCH) =====
-  const projectItems = document.querySelectorAll('.project-item');
-
-  const handleProjectStackScroll = () => {
-    const windowHeight = window.innerHeight;
-
-    projectItems.forEach((card, index) => {
-      const rect = card.getBoundingClientRect();
-      const topOffset = 90 + (index * 25);
-      
-      // When the card reaches its sticky position
-      if (rect.top <= topOffset + 10) {
-        // Calculate how much further user has scrolled past this card
-        const nextCard = projectItems[index + 1];
-        if (nextCard) {
-          const nextRect = nextCard.getBoundingClientRect();
-          const progress = Math.max(0, Math.min(1, (topOffset + 200 - nextRect.top) / 300));
-          
-          // Subtle scale and brightness reduction as the next card stacks over it
-          const scale = 1 - (progress * 0.04);
-          const brightness = 1 - (progress * 0.25);
-          card.style.transform = `scale(${scale})`;
-          card.style.filter = `brightness(${brightness})`;
-        }
-      } else {
-        card.style.transform = 'scale(1)';
-        card.style.filter = 'brightness(1)';
-      }
-    });
-  };
-
-  window.addEventListener('scroll', handleProjectStackScroll, { passive: true });
-
   // ===== 5. CONTACT FORM HANDLING =====
   const contactForm = document.getElementById('contact-form');
 

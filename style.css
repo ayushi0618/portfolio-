@@ -1919,8 +1919,8 @@ body.vapour-lock {
 
 .cg-stage {
   position: relative;
-  height: 560px;
-  perspective: 1500px;
+  height: 640px;
+  perspective: 2200px; /* JS also sets this per breakpoint in onResize */
   overflow: hidden;
   cursor: grab;
   touch-action: pan-y;
@@ -1945,9 +1945,9 @@ body.vapour-lock {
   --cg-card-w: 300px;
   position: absolute;
   left: calc(var(--cg-card-w) / -2);
-  top: -215px;
+  top: -250px;
   width: var(--cg-card-w);
-  height: 430px;
+  height: 500px;
   background: #0d0d0f;
   border: 1px solid #232323;
   border-radius: 18px;
@@ -1964,7 +1964,7 @@ body.vapour-lock {
 }
 
 .cg-img-wrap {
-  height: 42%;
+  height: 36%;
   overflow: hidden;
   background: #161618;
   border-bottom: 1px solid #1e1e1e;
@@ -2018,6 +2018,28 @@ body.vapour-lock {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.cg-card.cg-expanded .cg-desc {
+  -webkit-line-clamp: 7;
+}
+
+.cg-more {
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 7px 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #a78bfa;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cg-more:hover {
+  color: #c4b5fd;
+  text-decoration: underline;
 }
 
 .cg-links {
@@ -2102,15 +2124,18 @@ body.vapour-lock {
 
 @media (max-width: 640px) {
   .cg-stage {
-    height: 480px;
-    perspective: 1100px;
+    height: 540px;
+    perspective: 1300px;
   }
   .cg-card {
-    top: -180px;
-    height: 360px;
+    top: -215px;
+    height: 430px;
   }
   .cg-desc {
     -webkit-line-clamp: 2;
+  }
+  .cg-card.cg-expanded .cg-desc {
+    -webkit-line-clamp: 5;
   }
 }
 
