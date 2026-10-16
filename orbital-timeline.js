@@ -14,12 +14,36 @@
       desc: 'CGPA 8.0/10. Core CS foundation: DSA (150+ LeetCode), DBMS, Operating Systems, Computer Networks, OOP.'
     },
     {
+      icon: '🏦',
+      title: 'J.P. Morgan — Software Engineering Job Simulation',
+      org: 'J.P. Morgan (Via Forage) • Virtual',
+      date: 'Sep 2025',
+      status: 'completed',
+      desc: 'Completed practical software engineering tasks: backend microservices, interface integration, and a stock price data feed with visual display for traders.'
+    },
+    {
       icon: '🏆',
       title: 'Smart India Hackathon — Internal Winner',
       org: 'University-level hackathon',
       date: '2026',
       status: 'completed',
       desc: 'Won the internal Smart India Hackathon round with a full-stack product built under time pressure.'
+    },
+    {
+      icon: '💼',
+      title: 'Software Engineer Intern — Built Trishul',
+      org: '510 Army Base Workshop • Meerut, India',
+      date: 'Jul — Aug 2026',
+      status: 'completed',
+      desc: 'Built Trishul, an end-to-end workshop & fleet maintenance platform: real-time asset tracking, automated inventory alerts, live scheduling calendars, JWT role-based access, and secure RESTful APIs used in a live institutional environment.'
+    },
+    {
+      icon: '🚀',
+      title: 'Freelance Full-Stack Developer',
+      org: 'Fiverr & Upwork • Remote',
+      date: 'Oct 2026 — Present',
+      status: 'in-progress',
+      desc: 'Live gigs for business landing pages and portfolio sites in React + Tailwind. Building real client work.'
     },
     {
       icon: '🎬',
@@ -72,7 +96,7 @@
     var inner = el('div', 'journey-inner');
     inner.appendChild(el('h2', 'chrome-text reveal', 'MY JOURNEY'));
     inner.appendChild(el('p', 'journey-sub reveal delay-1',
-      'Four milestones, one orbit — hover or tap a node to see the story.'));
+      'Seven milestones, one orbit — hover or tap a node to see the story.'));
 
     /* ---- desktop orbital stage ---- */
     var stage = el('div', 'orbital-stage reveal delay-2');
@@ -96,7 +120,7 @@
       var btn = el('button', 'orbital-node orbital-node--' + m.status);
       btn.type = 'button';
       btn.setAttribute('aria-label', m.title + ', ' + m.date + ', ' + STATUS_LABEL[m.status]);
-      btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+      btn.setAttribute('aria-pressed', 'false');
       btn.setAttribute('data-index', String(i));
       btn.innerHTML = '<span class="orbital-node-icon" aria-hidden="true">' + m.icon + '</span>' +
         '<span class="orbital-node-year" aria-hidden="true">' + shortYear(m.date) + '</span>';
@@ -111,10 +135,13 @@
       nodes.push(btn);
     });
 
-    /* ---- detail card ---- */
+    /* ---- detail popup card: floats near the activated node, inside the stage ---- */
     var card = el('article', 'orbital-card');
     card.setAttribute('aria-live', 'polite');
+    stage.appendChild(card);
     inner.appendChild(stage);
+
+    var openIndex = -1;
 
     function renderCard(i) {
       var m = MILESTONES[i];
@@ -128,23 +155,56 @@
         '<p class="orbital-card-desc">' + m.desc + '</p>';
     }
 
-    function select(i, focusCard) {
+    function markActive(i) {
       nodes.forEach(function (b, j) {
         b.setAttribute('aria-pressed', j === i ? 'true' : 'false');
         b.classList.toggle('is-active', j === i);
       });
+    }
+
+    function positionPopup(i) {
+      var stageRect = stage.getBoundingClientRect();
+      var nodeRect = nodes[i].getBoundingClientRect();
+      if (!stageRect.width || !nodeRect.width) return;
+      card.classList.add('is-open');
+      var cw = card.offsetWidth || 300;
+      var ch = card.offsetHeight || 200;
+      var cx = nodeRect.left + nodeRect.width / 2 - stageRect.left;
+      var cy = nodeRect.top + nodeRect.height / 2 - stageRect.top;
+      var x = cx - cw / 2;
+      x = Math.max(8, Math.min(x, stageRect.width - cw - 8));
+      var y = cy - nodeRect.height / 2 - ch - 14; // above the node
+      if (y < 8) y = cy + nodeRect.height / 2 + 14; // flip below
+      if (y + ch > stageRect.height - 8) y = Math.max(8, stageRect.height - ch - 8);
+      card.style.left = x + 'px';
+      card.style.top = y + 'px';
+    }
+
+    function openPopup(i) {
       renderCard(i);
-      // flash the card so activation is unmistakable
-      card.classList.remove('orbital-card-flash');
-      void card.offsetWidth;
-      card.classList.add('orbital-card-flash');
-      if (focusCard) card.focus();
+      markActive(i);
+      positionPopup(i);
+      stage.classList.add('is-paused'); // pause the orbit while open
+      openIndex = i;
+    }
+
+    function closePopup() {
+      if (openIndex === -1) return;
+      card.classList.remove('is-open');
+      stage.classList.remove('is-paused');
+      nodes.forEach(function (b) {
+        b.setAttribute('aria-pressed', 'false');
+        b.classList.remove('is-active');
+      });
+      openIndex = -1;
     }
 
     nodes.forEach(function (b, i) {
-      b.addEventListener('click', function () { select(i, false); });
-      b.addEventListener('mouseenter', function () { select(i, false); });
-      b.addEventListener('focus', function () { select(i, false); });
+      b.addEventListener('click', function () {
+        if (openIndex === i) { closePopup(); } else { openPopup(i); }
+      });
+      b.addEventListener('mouseenter', function () { openPopup(i); });
+      b.addEventListener('focus', function () { openPopup(i); });
       b.addEventListener('keydown', function (e) {
         if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
           e.preventDefault();
@@ -158,9 +218,15 @@
       });
     });
 
-    card.tabIndex = -1;
-    card.className += ' reveal delay-3';
-    inner.appendChild(card);
+    // Close when clicking anywhere else on the stage background.
+    stage.addEventListener('click', function (e) {
+      if (openIndex !== -1 && !e.target.closest('.orbital-node') && !e.target.closest('.orbital-card')) {
+        closePopup();
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePopup();
+    });
 
     /* ---- mobile fallback list (same data) ---- */
     var list = el('ul', 'orbital-list');
@@ -190,7 +256,7 @@
       document.body.insertBefore(section, document.body.firstChild);
     }
 
-    select(0, false);
+    // No auto-open on load: the popup appears only on node activation.
   }
 
   if (document.readyState === 'loading') {

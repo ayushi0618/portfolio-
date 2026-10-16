@@ -1,77 +1,126 @@
-/* ===== LIQUID NEON SHADER — hero background (vanilla recreation of the
-   21st.dev "liquid-neon-shader" concept) =====
-   WebGL fragment-shader liquid plasma in the brand palette
-   (purple #8B5CF6 → pink #EC4899 → orange #F97316) on near-black.
-   Ambient only: darker at the edges so hero text stays readable.
+/* ===== LIQUID NEON SHADER — hero background (SDF metaballs) =====
+   True liquid-neon look: 7 glowing neon blobs defined by signed distance
+   functions, smooth-min blended so they visibly MERGE and SEPARATE as they
+   drift. Bright core -> crystal rim highlight -> colored glow falloff -> black.
+   Brand palette: purple #a855f7, pink #ec4899, orange #f97316 on pure black.
+   WebGL2 (#version 300 es) preferred; GLSL ES 1.00 fallback for plain WebGL.
+   Ambient only: vignette + center scrim keep the hero text readable.
    Falls back to a 2D canvas blob field when WebGL is unavailable, and to a
    static CSS gradient when the user prefers reduced motion. */
 (function () {
   'use strict';
 
-  var FRAG = [
-    'precision highp float;',
+  /* Shared SDF-metaball body. OUTC is the output target: `O` under WebGL2
+     (declared in the header) or gl_FragColor under WebGL1 via macro. */
+  var FRAG_BODY = [
     'uniform vec2 u_res;',
     'uniform float u_time;',
-    'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }',
-    'float noise(vec2 p){',
-    '  vec2 i = floor(p); vec2 f = fract(p);',
-    '  vec2 u = f * f * (3.0 - 2.0 * f);',
-    '  return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),',
-    '             mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);',
+    '',
+    '#define NB 7',
+    '',
+    'float smin(float a, float b, float k){',
+    '  float h = clamp(0.5 + 0.5*(b - a)/k, 0.0, 1.0);',
+    '  return mix(b, a, h) - k*h*(1.0 - h);',
     '}',
-    'float fbm(vec2 p){',
-    '  float v = 0.0; float a = 0.5;',
-    '  for (int i = 0; i < 5; i++) { v += a * noise(p); p *= 2.03; a *= 0.5; }',
-    '  return v;',
-    '}',
+    '',
     'void main(){',
-    '  vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / u_res.y;',
-    '  float t = u_time * 0.07;',
-    '  vec2 p = uv * 1.7;',
-    '  vec2 q = vec2(fbm(p + vec2(t, -t * 0.7)), fbm(p + vec2(-t * 0.6, t)));',
-    '  vec2 r = vec2(fbm(p + 2.0 * q + vec2(1.7, 9.2) + t * 0.35),',
-    '                fbm(p + 2.0 * q + vec2(8.3, 2.8) - t * 0.28));',
-    '  float f = fbm(p + 2.5 * r);',
-    '  vec3 purple = vec3(0.545, 0.361, 0.965);',
-    '  vec3 pink   = vec3(0.925, 0.286, 0.600);',
-    '  vec3 orange = vec3(0.976, 0.451, 0.086);',
-    '  vec3 neon = mix(purple, pink, smoothstep(0.30, 0.62, r.x));',
-    '  neon = mix(neon, orange, smoothstep(0.55, 0.88, r.y));',
-    '  float bands = smoothstep(0.32, 0.78, f);',
-    '  float line = smoothstep(0.025, 0.0, abs(f - 0.55));',
-    '  vec3 col = vec3(0.012, 0.008, 0.030);',
-    '  col += neon * (bands * 0.50 + line * 0.85);',
-    '  float vig = smoothstep(1.25, 0.20, length(uv));',
-    '  col *= mix(0.30, 1.0, vig);',
-    '  gl_FragColor = vec4(col, 1.0);',
+    '  vec2 uv = (gl_FragCoord.xy - 0.5*u_res) / u_res.y;',
+    '  float t = u_time * 0.14;',
+    '',
+    '  vec3 cols[NB];',
+    '  cols[0] = vec3(0.659, 0.333, 0.969);', // #a855f7 purple
+    '  cols[1] = vec3(0.925, 0.286, 0.600);', // #ec4899 pink
+    '  cols[2] = vec3(0.976, 0.451, 0.086);', // #f97316 orange
+    '  cols[3] = vec3(0.659, 0.333, 0.969);',
+    '  cols[4] = vec3(0.925, 0.286, 0.600);',
+    '  cols[5] = vec3(0.976, 0.451, 0.086);',
+    '  cols[6] = vec3(0.545, 0.361, 0.965);',
+    '',
+    '  float d = 100000.0;',
+    '  vec3 bcol = vec3(0.0);',
+    '  float bw = 0.0;',
+    '  for (int i = 0; i < NB; i++) {',
+    '    float fi = float(i);',
+    '    float px = 0.60 * sin(t*(0.21 + 0.031*fi) + 1.7*fi);',
+    '    float py = 0.36 * sin(t*(0.17 + 0.043*fi) + 2.3*fi + 1.1);',
+    '    float r  = 0.16 + 0.028*fi + 0.030*sin(t*(0.50 + 0.11*fi) + 3.1*fi);',
+    '    float di = length(uv - vec2(px, py)) - r;',
+    '    d = smin(d, di, 0.16);',                // merge / separate smoothly
+    '    float w = exp(-6.0 * max(di, 0.0));',    // per-blob color weight
+    '    bcol += cols[i] * w;',
+    '    bw += w;',
+    '  }',
+    '  bcol /= max(bw, 0.0001);',
+    '',
+    '  float core = 1.0 - smoothstep(-0.05, 0.03, d);',       // bright liquid core
+    '  float rim  = 1.0 - smoothstep(0.0, 0.045, abs(d));', // crystal edge
+    '  float glow = exp(-5.0 * max(d, 0.0));',               // neon falloff
+    '',
+    '  vec3 col = vec3(0.0);',
+    '  col += bcol * core * 1.15;',
+    '  col += vec3(1.0, 0.98, 1.0) * pow(rim, 2.0) * 0.85;',
+    '  col += bcol * glow * 0.45;',
+    '  col += bcol * exp(-1.6 * max(d, 0.0)) * 0.10;', // faint ambient haze
+    '',
+    '  float vig = 1.0 - smoothstep(0.25, 1.25, length(uv));', // vignette
+    '  col *= mix(0.25, 1.0, vig);',
+    '  float scrim = 1.0 - smoothstep(0.05, 0.55, abs(uv.y - 0.03));', // text scrim
+    '  col *= mix(1.0, 0.55, scrim * 0.8);',
+    '',
+    '  OUTC = vec4(col, 1.0);',
     '}'
   ].join('\n');
 
-  var VERT = [
-    'attribute vec2 a_pos;',
-    'void main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }'
-  ].join('\n');
+  var FRAG_300 = '#version 300 es\nprecision highp float;\nout vec4 O;\n#define OUTC O\n' + FRAG_BODY;
+  var FRAG_100 = 'precision highp float;\n#define OUTC gl_FragColor\n' + FRAG_BODY;
+
+  var VERT_300 = '#version 300 es\nin vec2 a_pos;\nvoid main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }';
+  var VERT_100 = 'attribute vec2 a_pos;\nvoid main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }';
 
   function initGL(canvas) {
-    var gl = canvas.getContext('webgl', { antialias: false, alpha: false }) ||
-             canvas.getContext('experimental-webgl');
-    if (!gl) return null;
+    // Prefer WebGL2; fall back to WebGL1 with the GLSL ES 1.00 shader.
+    var attempts = [
+      { ctx: 'webgl2', vs: VERT_300, fs: FRAG_300 },
+      { ctx: 'webgl', vs: VERT_100, fs: FRAG_100 },
+      { ctx: 'experimental-webgl', vs: VERT_100, fs: FRAG_100 }
+    ];
+    for (var a = 0; a < attempts.length; a++) {
+      var gl = null;
+      try { gl = canvas.getContext(attempts[a].ctx, { antialias: false, alpha: false }); } catch (e) { gl = null; }
+      if (!gl) continue;
+      var prog = buildProgram(gl, attempts[a].vs, attempts[a].fs);
+      if (prog) return makeRenderer(gl, prog);
+    }
+    return null;
+  }
+
+  function buildProgram(gl, vsSrc, fsSrc) {
     function shader(type, src) {
       var s = gl.createShader(type);
       gl.shaderSource(s, src);
       gl.compileShader(s);
-      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        if (window.console && console.warn) console.warn('[neon-hero] shader compile failed:', gl.getShaderInfoLog(s));
+        return null;
+      }
       return s;
     }
-    var vs = shader(gl.VERTEX_SHADER, VERT);
-    var fs = shader(gl.FRAGMENT_SHADER, FRAG);
+    var vs = shader(gl.VERTEX_SHADER, vsSrc);
+    var fs = shader(gl.FRAGMENT_SHADER, fsSrc);
     if (!vs || !fs) return null;
     var prog = gl.createProgram();
     gl.attachShader(prog, vs);
     gl.attachShader(prog, fs);
     gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      if (window.console && console.warn) console.warn('[neon-hero] program link failed');
+      return null;
+    }
     gl.useProgram(prog);
+    return prog;
+  }
+
+  function makeRenderer(gl, prog) {
     var buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
@@ -91,12 +140,12 @@
     };
   }
 
-  /* 2D fallback: slowly drifting neon blobs on near-black */
+  /* 2D fallback: slowly drifting neon blobs on pure black */
   function init2D(canvas) {
     var ctx = canvas.getContext('2d');
     if (!ctx) return null;
     var blobs = [];
-    var palette = [[139, 92, 246], [236, 72, 153], [249, 115, 22], [139, 92, 246], [236, 72, 153]];
+    var palette = [[168, 85, 247], [236, 72, 153], [249, 115, 22], [168, 85, 247], [236, 72, 153]];
     for (var i = 0; i < 7; i++) {
       blobs.push({
         c: palette[i % palette.length],
@@ -109,7 +158,7 @@
     }
     return {
       draw: function (w, h, t) {
-        ctx.fillStyle = '#03020a';
+        ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, w, h);
         ctx.globalCompositeOperation = 'lighter';
         for (var i = 0; i < blobs.length; i++) {

@@ -2277,6 +2277,8 @@ body.vapour-lock {
   to { rotate: calc(var(--start, 0deg) * -1 - 360deg); }
 }
 
+.orbital-stage.is-paused .orbital-spinner,
+.orbital-stage.is-paused .orbital-node { animation-play-state: paused; }
 .orbital-node {
   position: absolute; left: var(--orbit-r); top: 0;
   translate: -50% -50%;
@@ -2301,7 +2303,9 @@ body.vapour-lock {
 .orbital-node--in-progress {
   border-color: #fff;
   background: #111;
-  animation: orbital-pulse 2.6s ease-in-out infinite;
+  /* keep the counter-rotation (first) so the node stays upright, plus pulse */
+  animation: orbital-node-rev var(--orbit-dur) linear infinite,
+             orbital-pulse 2.6s ease-in-out infinite;
 }
 @keyframes orbital-pulse {
   0%, 100% { box-shadow: 0 0 12px rgba(255, 255, 255, 0.40), 0 0 30px rgba(255, 255, 255, 0.18); }
@@ -2325,12 +2329,21 @@ body.vapour-lock {
 .orbital-hub-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #ccc; margin-top: 4px; }
 
 .orbital-card {
-  max-width: 660px; margin: 0 auto;
+  position: absolute;
+  width: min(320px, calc(100% - 16px));
+  display: none;
+  z-index: 30;
   background: #0d0d0d;
-  border: 1px solid #222;
-  border-radius: 18px;
-  padding: 28px 30px;
+  border: 1px solid #333;
+  border-radius: 16px;
+  padding: 20px 22px;
   text-align: left;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.7), 0 0 24px rgba(255, 255, 255, 0.12);
+}
+.orbital-card.is-open { display: block; animation: orbital-card-pop 0.22s ease-out; }
+@keyframes orbital-card-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: none; }
 }
 .orbital-card h3 { font-size: 22px; margin: 10px 0 6px; }
 .orbital-card-org { color: #bbb; font-size: 14px; }
