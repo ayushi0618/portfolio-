@@ -232,10 +232,25 @@
   stage.addEventListener('focusin', function () { hovering = true; });
   stage.addEventListener('focusout', function () { hovering = false; });
 
+  /* While the page itself is being scrolled, the pointer may rest over the
+     stage without the user actually engaging the gallery — keep spinning
+     through that, and only pause once scrolling settles (i.e. the user has
+     actually arrived at the projects). */
+  var pageScrolling = false, scrollTimer = 0;
+  function markScrolling() {
+    pageScrolling = true;
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () { pageScrolling = false; scrollTimer = 0; }, 600);
+  }
+  window.addEventListener('wheel', markScrolling, { passive: true });
+  window.addEventListener('scroll', markScrolling, { passive: true });
+  window.addEventListener('touchmove', markScrolling, { passive: true });
+
   /* ---------- render loop ---------- */
   function render() {
     var now = performance.now();
-    if (!reduceMotion && !dragging && !hovering && now > userHoldUntil) {
+    var engaged = hovering && !pageScrolling;
+    if (!reduceMotion && !dragging && !engaged && now > userHoldUntil) {
       target += 0.14; // gentle auto-rotation
     }
     current += (target - current) * 0.085;

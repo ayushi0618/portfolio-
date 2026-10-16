@@ -370,8 +370,8 @@ img {
   .exp-hover-in { animation: none; }
 }
 
-/* ===== LIQUID NEON SHADER — hero background ===== */
-.neon-hero-canvas {
+/* ===== DOTTED SURFACE — hero background ===== */
+.dot-surface-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -388,11 +388,10 @@ img {
   pointer-events: none;
   background: radial-gradient(ellipse 90% 75% at 50% 42%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.52) 78%, rgba(0, 0, 0, 0.78) 100%);
 }
-/* static fallback (reduced motion / no canvas): layered brand gradient */
+/* static fallback (reduced motion / no canvas): faint neutral glow */
 .hero.neon-static {
   background:
-    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(139, 92, 246, 0.28) 0%, rgba(236, 72, 153, 0.12) 45%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 72% 68%, rgba(249, 115, 22, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(255, 255, 255, 0.07) 0%, transparent 70%),
     var(--bg-dark, #000);
 }
 
