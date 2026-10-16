@@ -145,6 +145,20 @@
     <h2 class="projects-main-title chrome-text reveal"
       style="text-align: center; font-size: clamp(40px, 7vw, 90px); margin-bottom: 60px; font-weight: 900; letter-spacing: -2px;">
       FEATURED PROJECTS</h2>
+
+    <!-- ===== CIRCULAR GALLERY: rotating 3D project ring ===== -->
+    <div class="cg-wrap reveal">
+      <div class="cg-stage" id="cg-stage">
+        <div class="cg-ring" id="cg-ring"></div>
+      </div>
+      <div class="cg-controls">
+        <button class="cg-arrow" id="cg-prev" aria-label="Previous project">&#8592;</button>
+        <div class="cg-dots" id="cg-dots" role="tablist" aria-label="Projects"></div>
+        <button class="cg-arrow" id="cg-next" aria-label="Next project">&#8594;</button>
+      </div>
+      <p class="cg-hint">drag to spin &middot; click a card's links to open</p>
+    </div>
+
     <div class="projects-list">
 
       <!-- Project 01: Trishul -->
@@ -664,6 +678,7 @@
   </div>
 
   <script src="intro.js"></script>
+  <script src="circular-gallery.js"></script>
   <script src="script.js"></script>
 </body>
 
