@@ -22,22 +22,6 @@
       desc: 'Won the internal Smart India Hackathon round with a full-stack product built under time pressure.'
     },
     {
-      icon: '💼',
-      title: 'Software Engineer Intern',
-      org: '510 Army Base Workshop • Meerut, India',
-      date: 'Jul 2026 — Aug 2026',
-      status: 'completed',
-      desc: 'Built Trishul, an end-to-end workshop & fleet maintenance platform: real-time asset tracking, automated inventory alerts, live scheduling calendars, JWT role-based access, and secure RESTful APIs used in a live institutional environment.'
-    },
-    {
-      icon: '🚀',
-      title: 'Freelance Full-Stack Developer',
-      org: 'Fiverr & Upwork',
-      date: 'Oct 2026 — Present',
-      status: 'in-progress',
-      desc: 'Live gigs for business landing pages and portfolio sites in React + Tailwind. Building real client work alongside the internship grind.'
-    },
-    {
       icon: '🎬',
       title: '"Code Like Lily" YouTube Channel',
       org: 'YouTube • @liliescodes',
@@ -88,7 +72,7 @@
     var inner = el('div', 'journey-inner');
     inner.appendChild(el('h2', 'chrome-text reveal', 'MY JOURNEY'));
     inner.appendChild(el('p', 'journey-sub reveal delay-1',
-      'Six milestones, one orbit — hover or tap a node to see the story.'));
+      'Four milestones, one orbit — hover or tap a node to see the story.'));
 
     /* ---- desktop orbital stage ---- */
     var stage = el('div', 'orbital-stage reveal delay-2');
@@ -116,9 +100,10 @@
       btn.setAttribute('data-index', String(i));
       btn.innerHTML = '<span class="orbital-node-icon" aria-hidden="true">' + m.icon + '</span>' +
         '<span class="orbital-node-year" aria-hidden="true">' + shortYear(m.date) + '</span>';
-      // Position via a --start angle on the slot; the slot counter-rotates at the
-      // same speed as the spinner (see CSS), so the button stays upright while
-      // orbiting. --orbit-r (radius) is defined in CSS.
+      // The slot is a static anchor at the ring's start angle (see CSS); the
+      // spinner carries it around the orbit while the node counter-rotates
+      // (independent `rotate` property) to stay upright. --orbit-r (radius)
+      // is defined in CSS.
       var wrapper = el('span', 'orbital-slot');
       wrapper.style.setProperty('--start', angle + 'deg');
       wrapper.appendChild(btn);
@@ -149,6 +134,10 @@
         b.classList.toggle('is-active', j === i);
       });
       renderCard(i);
+      // flash the card so activation is unmistakable
+      card.classList.remove('orbital-card-flash');
+      void card.offsetWidth;
+      card.classList.add('orbital-card-flash');
       if (focusCard) card.focus();
     }
 

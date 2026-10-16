@@ -326,6 +326,32 @@ img {
   letter-spacing: 0.5px;
 }
 
+/* ===== LIQUID NEON SHADER — hero background ===== */
+.neon-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+/* dark scrim above the shader so hero text keeps its contrast */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 75% at 50% 42%, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.52) 78%, rgba(0, 0, 0, 0.78) 100%);
+}
+/* static fallback (reduced motion / no canvas): layered brand gradient */
+.hero.neon-static {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 40%, rgba(139, 92, 246, 0.28) 0%, rgba(236, 72, 153, 0.12) 45%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 72% 68%, rgba(249, 115, 22, 0.14) 0%, transparent 70%),
+    var(--bg-dark, #000);
+}
+
 /* ===== SECTION: ABOUT ME ===== */
 .about {
   background: var(--bg-dark);
@@ -1234,6 +1260,18 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px 30px;
+}
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.exp-date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .exp-badge {
@@ -2163,23 +2201,28 @@ body.vapour-lock {
 .orbital-ring {
   position: absolute; inset: 0;
   border-radius: 50%;
-  border: 1px dashed rgba(139, 92, 246, 0.35);
+  border: 1px dashed rgba(255, 255, 255, 0.28);
   pointer-events: none;
 }
-.orbital-spinner { position: absolute; inset: 0; animation: orbital-spin var(--orbit-dur) linear infinite; }
+.orbital-spinner { position: absolute; inset: 0; animation: orbital-spin var(--orbit-dur) linear infinite; pointer-events: none; }
 .orbital-slot {
   position: absolute; left: 50%; top: 50%; width: 0; height: 0;
-  animation: orbital-slot-rev var(--orbit-dur) linear infinite;
+  transform: rotate(var(--start, 0deg));
+  pointer-events: none;
 }
 @keyframes orbital-spin { to { transform: rotate(360deg); } }
-@keyframes orbital-slot-rev {
-  from { transform: rotate(var(--start, 0deg)); }
-  to { transform: rotate(calc(var(--start, 0deg) - 360deg)); }
+/* The node counter-rotates (via the independent `rotate` property, so it never
+   fights `translate`/`scale`) to stay upright while the spinner carries it
+   around the ring. Total orientation = spinner(θ) + slot(start) + node(−start−θ) = 0. */
+@keyframes orbital-node-rev {
+  from { rotate: calc(var(--start, 0deg) * -1); }
+  to { rotate: calc(var(--start, 0deg) * -1 - 360deg); }
 }
 
 .orbital-node {
   position: absolute; left: var(--orbit-r); top: 0;
-  transform: translate(-50%, -50%);
+  translate: -50% -50%;
+  rotate: calc(var(--start, 0deg) * -1);
   width: 68px; height: 68px;
   border-radius: 50%;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0;
@@ -2187,27 +2230,28 @@ body.vapour-lock {
   border: 2px solid #333;
   cursor: pointer;
   padding: 0;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  pointer-events: auto;
+  animation: orbital-node-rev var(--orbit-dur) linear infinite;
+  transition: border-color 0.3s, box-shadow 0.3s, scale 0.3s;
 }
 .orbital-node:hover, .orbital-node:focus-visible, .orbital-node.is-active {
-  transform: translate(-50%, -50%) scale(1.12);
+  scale: 1.12;
   outline: none;
 }
 .orbital-node--completed { border-color: #4b5563; opacity: 0.75; }
 .orbital-node--completed:hover, .orbital-node--completed:focus-visible, .orbital-node--completed.is-active { border-color: #9ca3af; opacity: 1; }
 .orbital-node--in-progress {
-  border-color: transparent;
-  background: #111 linear-gradient(#111, #111) padding-box,
-    linear-gradient(135deg, #8B5CF6, #EC4899, #F97316) border-box;
+  border-color: #fff;
+  background: #111;
   animation: orbital-pulse 2.6s ease-in-out infinite;
 }
 @keyframes orbital-pulse {
-  0%, 100% { box-shadow: 0 0 12px rgba(236, 72, 153, 0.45), 0 0 30px rgba(139, 92, 246, 0.25); }
-  50% { box-shadow: 0 0 22px rgba(236, 72, 153, 0.8), 0 0 46px rgba(139, 92, 246, 0.45); }
+  0%, 100% { box-shadow: 0 0 12px rgba(255, 255, 255, 0.40), 0 0 30px rgba(255, 255, 255, 0.18); }
+  50% { box-shadow: 0 0 22px rgba(255, 255, 255, 0.75), 0 0 46px rgba(255, 255, 255, 0.35); }
 }
 .orbital-node--upcoming { border-style: dashed; border-color: #555; opacity: 0.7; }
-.orbital-node:focus-visible { box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.6); }
-.orbital-node-icon { font-size: 24px; line-height: 1; }
+.orbital-node:focus-visible { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6); }
+.orbital-node-icon { font-size: 24px; line-height: 1; filter: grayscale(1) brightness(1.15); }
 .orbital-node-year { font-size: 9px; color: #bbb; margin-top: 3px; letter-spacing: 0.4px; white-space: nowrap; }
 
 .orbital-hub {
@@ -2215,12 +2259,10 @@ body.vapour-lock {
   transform: translate(-50%, -50%);
   width: 118px; height: 118px; border-radius: 50%;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  background:
-    linear-gradient(#0a0a0a, #0a0a0a) padding-box,
-    linear-gradient(135deg, #8B5CF6, #EC4899, #F97316) border-box;
-  border: 3px solid transparent;
-  font-size: 30px; color: #EC4899;
-  box-shadow: 0 0 34px rgba(139, 92, 246, 0.35);
+  background: #0a0a0a;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  font-size: 30px; color: #fff;
+  box-shadow: 0 0 34px rgba(255, 255, 255, 0.28);
 }
 .orbital-hub-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #ccc; margin-top: 4px; }
 
@@ -2234,8 +2276,14 @@ body.vapour-lock {
 }
 .orbital-card h3 { font-size: 22px; margin: 10px 0 6px; }
 .orbital-card-org { color: #bbb; font-size: 14px; }
-.orbital-card-date { color: #EC4899; font-size: 13px; letter-spacing: 1px; margin: 6px 0 12px; font-weight: 600; }
+.orbital-card-date { color: #e5e5e5; font-size: 13px; letter-spacing: 1px; margin: 6px 0 12px; font-weight: 600; }
 .orbital-card-desc { color: #ddd; font-size: 15px; line-height: 1.65; }
+/* brief highlight so node activation is unmistakable */
+@keyframes orbital-card-flash {
+  0% { border-color: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.30); }
+  100% { border-color: #222; box-shadow: none; }
+}
+.orbital-card-flash { animation: orbital-card-flash 0.8s ease-out; }
 .orbital-card-status {
   display: inline-block; font-size: 11px; font-weight: 700;
   letter-spacing: 1.4px; text-transform: uppercase;
@@ -2243,8 +2291,8 @@ body.vapour-lock {
 }
 .orbital-card-status--completed { background: rgba(156, 163, 175, 0.15); color: #9ca3af; }
 .orbital-card-status--in-progress {
-  background: linear-gradient(135deg, #8B5CF6, #EC4899, #F97316);
-  color: #fff; box-shadow: 0 0 14px rgba(236, 72, 153, 0.5);
+  background: #f5f5f5;
+  color: #111; box-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
 }
 .orbital-card-status--upcoming { border: 1px dashed #666; color: #aaa; }
 
@@ -2255,7 +2303,7 @@ body.vapour-lock {
   background: #0d0d0d; border: 1px solid #222; border-radius: 16px;
   padding: 18px; margin-bottom: 14px;
 }
-.orbital-list-icon { font-size: 30px; flex: none; }
+.orbital-list-icon { font-size: 30px; flex: none; filter: grayscale(1) brightness(1.15); }
 .orbital-list-item h3 { font-size: 18px; margin: 8px 0 4px; }
 .orbital-list-meta { color: #bbb; font-size: 13px; margin-bottom: 8px; }
 .orbital-list-desc { color: #ddd; font-size: 14px; line-height: 1.6; }
@@ -2266,6 +2314,7 @@ body.vapour-lock {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .orbital-spinner, .orbital-slot, .orbital-node--in-progress { animation: none; }
+  .orbital-spinner, .orbital-node, .orbital-node--in-progress { animation: none; }
   .orbital-slot { transform: rotate(var(--start, 0deg)); }
+  .orbital-node { rotate: calc(var(--start, 0deg) * -1); }
 }
