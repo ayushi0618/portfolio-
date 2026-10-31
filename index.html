@@ -468,49 +468,42 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer" id="footer">
-    <div class="footer-top">
-      <div class="footer-name-wrap">
-        <h3 class="footer-name">AYUSHI<br>SINGH</h3>
+  <!-- ===== HALFTONE WORDMARK FOOTER ===== -->
+  <footer id="hwf-root" class="hwf-root" data-wordmark="ayushi" data-bg="#0c0c0b" data-ink="#e9e4da" data-warm="#e9762b" style="height: 560px; --hwf-bg: #0c0c0b; --hwf-ink: #e9e4da; --hwf-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;">
+    <canvas aria-hidden="true"></canvas>
+    <span class="hwf-sr">ayushi</span>
+    <div class="hwf-top">
+      <div class="hwf-brand">
+        <strong>Hi, I'm Ayushi</strong>
+        <span>Ayushi Singh &middot; Ghaziabad, India</span>
       </div>
-      <div class="footer-column">
-        <h4 class="footer-column-title">Profiles & Socials</h4>
+      <nav class="hwf-col" aria-label="Work">
+        <h3>Work</h3>
         <ul>
-          <li><a href="https://github.com/ayushi0618" target="_blank" rel="noopener noreferrer"
-              id="social-github">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/ayushi-singh-247126293/" target="_blank" rel="noopener noreferrer"
-              id="social-linkedin">LinkedIn</a></li>
-          <li><a href="https://leetcode.com/u/ayushi0618/" target="_blank" rel="noopener noreferrer"
-              id="social-leetcode">LeetCode</a></li>
-          <li><a href="https://ayushi-gray.vercel.app/" target="_blank" rel="noopener noreferrer"
-              id="social-portfolio">Live Portfolio</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Tech Arsenal</a></li>
         </ul>
-      </div>
-      <div class="footer-column">
-        <h4 class="footer-column-title">Contact</h4>
+      </nav>
+      <nav class="hwf-col" aria-label="Profiles">
+        <h3>Profiles</h3>
+        <ul>
+          <li><a href="https://github.com/ayushi0618" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/ayushi-singh-247126293/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://leetcode.com/u/ayushi0618/" target="_blank" rel="noopener noreferrer">LeetCode</a></li>
+          <li><a href="https://ayushi-gray.vercel.app/" target="_blank" rel="noopener noreferrer">Live Portfolio</a></li>
+        </ul>
+      </nav>
+      <nav class="hwf-col" aria-label="Contact">
+        <h3>Contact</h3>
         <ul>
           <li><a href="mailto:ayushi.singh0618@gmail.com">ayushi.singh0618@gmail.com</a></li>
           <li><a href="tel:+918766315441">+91 8766315441</a></li>
         </ul>
-        <address class="footer-address">
-          Ghaziabad, Uttar Pradesh<br>
-          India
-        </address>
-      </div>
+      </nav>
     </div>
-
-    <!-- Colorful geometric shapes -->
-    <div class="footer-shapes" aria-hidden="true">
-      <span class="shape shape-purple">✕</span>
-      <span class="shape shape-green">⁘</span>
-      <span class="shape shape-white">◗</span>
-      <span class="shape shape-orange">⟐</span>
-      <span class="shape shape-white">▷</span>
-      <span class="shape shape-purple">◉</span>
-      <span class="shape shape-orange">⬡</span>
-      <span class="shape shape-white">△</span>
-      <span class="shape shape-pink">◎</span>
+    <div class="hwf-rule">
+      <button type="button" class="hwf-up">Back to top &uarr;</button>
     </div>
   </footer>
 
@@ -675,6 +668,7 @@
   <script src="orbital-timeline.js"></script>
   <script src="dotted-surface.js"></script>
   <script src="exp-hover.js"></script>
+  <script src="halftone-footer.js"></script>
   <script src="script.js"></script>
 </body>
 
