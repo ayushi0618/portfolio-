@@ -85,6 +85,7 @@
     },
     {
       n: '08', title: 'Olist Brazilian E-Commerce Analytics',
+      badge: 'DATA ANALYTICS',
       stack: 'Python, SQL, Pandas, Streamlit, Excel, Power BI',
       desc: 'End-to-end marketplace audit of 96,478 delivered orders (GMV R$ 13.22M) examining delivery delays, satisfaction drivers, and repeat purchase barriers. Late orders averaged 2.57 stars vs 4.30 for on-time deliveries, and a 3.0% repeat rate flags the key revenue leak. Delivered as a 4-page interactive Streamlit app, an 11-sheet Excel financial model, and a Power BI dashboard pack.',
       img: 'assets/olist-top-categories.png', alt: 'Olist top product categories by revenue chart',
@@ -93,6 +94,7 @@
     },
     {
       n: '09', title: 'A/B Testing & Statistical Analysis',
+      badge: 'DATA ANALYTICS',
       stack: 'Python, SciPy, SQL, Statistics',
       desc: 'Rigorous experimental analysis of a landing page redesign: 294,478 raw user rows cleaned, Sample Ratio Mismatch checked (p = 0.947), and z-tests, chi-square, bootstrap, and power calculations run in SciPy. No significant conversion lift (Control 12.04% vs Variant 11.88%, z = -1.31, p = 0.190) — recommendation: halt deployment. Full statistical report linked below.',
       img: 'assets/ab-forest.png', alt: 'A/B test effect-size forest plot',
@@ -102,6 +104,7 @@
     },
     {
       n: '10', title: 'Retail Analyzer (Retail Pulse)',
+      badge: 'DATA ANALYTICS',
       stack: 'Python, SQL, Pandas, Scikit-learn',
       desc: 'Customer-intelligence engine segmenting e-commerce buyers via RFM behavior for targeted CRM retention. A 3NF SQLite/SQLAlchemy schema with log1p skew-corrected RFM scoring and K-Means clustering groups customers into 10 tactical CRM segments — Champions (19.9% of users) drive 38.9% of revenue, and Champions + Loyal together generate 57.9%.',
       img: 'assets/retail-pulse-cover.png', alt: 'Retail Pulse project cover',
@@ -143,6 +146,7 @@
     el.innerHTML =
       '<div class="cg-img-wrap"><img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" draggable="false"></div>' +
       '<div class="cg-body">' +
+        (p.badge ? '<span class="cg-badge">' + p.badge + '</span>' : '') +
         '<span class="cg-num">' + p.n + '</span>' +
         '<h3 class="cg-title">' + p.title + '</h3>' +
         '<p class="cg-stack">' + p.stack + '</p>' +
