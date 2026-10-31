@@ -38,7 +38,11 @@
 
   <!-- ===== HERO SECTION ===== -->
   <section class="hero" id="hero">
-    <h1 class="hero-heading chrome-text">HI, I'M AYUSHI</h1>
+    <div class="hwf-root" data-hwf-root data-wordmark="hi i'm ayushi" data-bg="#000000" data-ink="#e9e4da" data-warm="#e9762b" style="height: 340px; --hwf-bg: #000000; --hwf-ink: #e9e4da; --hwf-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;">
+      <canvas aria-hidden="true"></canvas>
+      <span class="hwf-sr">Hi, I'm Ayushi</span>
+    </div>
+    <h1 class="hwf-sr">Hi, I'm Ayushi</h1>
 
     <div class="hero-character-wrap">
       <img src="assets/ayushi-avatar.jpg" alt="3D Stylized Avatar of Ayushi Singh" class="hero-character">
@@ -288,10 +292,11 @@
         style="font-size: clamp(36px, 6vw, 72px); text-align: center; margin-bottom: 50px;">TECH ARSENAL & HIGHLIGHTS
       </h2>
 
-      <div class="skills-grid">
-        <div class="skill-category-card reveal delay-1">
-          <h3 class="skill-cat-title">Languages & Core CS</h3>
-          <div class="skill-chips">
+      <div class="ta-accordion reveal">
+        <div class="ta-panel" data-ta-panel>
+          <div class="ta-panel-bg ta-bg-0"></div>
+          <div class="ta-panel-overlay"></div>
+          <div class="ta-panel-chips skill-chips">
             <span class="skill-chip"><img src="assets/logos/python.svg" alt="" loading="lazy">Python</span>
             <span class="skill-chip skill-chip-text">Java</span>
             <span class="skill-chip"><img src="assets/logos/cplusplus.svg" alt="" loading="lazy">C++</span>
@@ -304,11 +309,12 @@
             <span class="skill-chip skill-chip-text">OOP</span>
             <span class="skill-chip skill-chip-hot">200+ LeetCode</span>
           </div>
+          <span class="ta-panel-title">Languages & Core CS</span>
         </div>
-
-        <div class="skill-category-card reveal delay-2">
-          <h3 class="skill-cat-title">Backend &amp; Data</h3>
-          <div class="skill-chips">
+        <div class="ta-panel" data-ta-panel>
+          <div class="ta-panel-bg ta-bg-1"></div>
+          <div class="ta-panel-overlay"></div>
+          <div class="ta-panel-chips skill-chips">
             <span class="skill-chip"><img src="assets/logos/nodedotjs.svg" alt="" loading="lazy">Node.js</span>
             <span class="skill-chip"><img src="assets/logos/express.svg" alt="" loading="lazy">Express.js</span>
             <span class="skill-chip skill-chip-text">REST APIs</span>
@@ -322,11 +328,12 @@
             <span class="skill-chip"><img src="assets/logos/drizzle.svg" alt="" loading="lazy">Drizzle ORM</span>
             <span class="skill-chip skill-chip-text">Data Pipelines</span>
           </div>
+          <span class="ta-panel-title">Backend &amp; Data</span>
         </div>
-
-        <div class="skill-category-card reveal delay-3">
-          <h3 class="skill-cat-title">Frontend &amp; UI/UX</h3>
-          <div class="skill-chips">
+        <div class="ta-panel" data-ta-panel>
+          <div class="ta-panel-bg ta-bg-2"></div>
+          <div class="ta-panel-overlay"></div>
+          <div class="ta-panel-chips skill-chips">
             <span class="skill-chip"><img src="assets/logos/react.svg" alt="" loading="lazy">React.js</span>
             <span class="skill-chip"><img src="assets/logos/vite.svg" alt="" loading="lazy">Vite</span>
             <span class="skill-chip"><img src="assets/logos/tailwindcss.svg" alt="" loading="lazy">Tailwind CSS</span>
@@ -335,11 +342,12 @@
             <span class="skill-chip"><img src="assets/logos/lucide.svg" alt="" loading="lazy">Lucide React</span>
             <span class="skill-chip skill-chip-text">Responsive Mobile-First Architecture</span>
           </div>
+          <span class="ta-panel-title">Frontend &amp; UI/UX</span>
         </div>
-
-        <div class="skill-category-card reveal delay-4">
-          <h3 class="skill-cat-title">DevOps, AI &amp; Tools</h3>
-          <div class="skill-chips">
+        <div class="ta-panel" data-ta-panel>
+          <div class="ta-panel-bg ta-bg-3"></div>
+          <div class="ta-panel-overlay"></div>
+          <div class="ta-panel-chips skill-chips">
             <span class="skill-chip"><img src="assets/logos/docker.svg" alt="" loading="lazy">Docker</span>
             <span class="skill-chip"><img src="assets/logos/git.svg" alt="" loading="lazy">Git</span>
             <span class="skill-chip"><img src="assets/logos/github.svg" alt="" loading="lazy">GitHub</span>
@@ -350,11 +358,12 @@
             <span class="skill-chip skill-chip-text">Google Cloud Vision OCR</span>
             <span class="skill-chip skill-chip-text">IBM Cybersecurity Certified</span>
           </div>
+          <span class="ta-panel-title">DevOps, AI &amp; Tools</span>
         </div>
-
-        <div class="skill-category-card skill-category-wide reveal">
-          <h3 class="skill-cat-title">Data Analytics &amp; BI</h3>
-          <div class="skill-chips">
+        <div class="ta-panel ta-active" data-ta-panel>
+          <div class="ta-panel-bg ta-bg-4"></div>
+          <div class="ta-panel-overlay"></div>
+          <div class="ta-panel-chips skill-chips">
             <span class="skill-chip"><img src="assets/logos/python.svg" alt="" loading="lazy">Python</span>
             <span class="skill-chip skill-chip-text">SQL</span>
             <span class="skill-chip"><img src="assets/logos/pandas.svg" alt="" loading="lazy">Pandas</span>
@@ -369,6 +378,7 @@
             <span class="skill-chip skill-chip-text">EDA</span>
             <span class="skill-chip skill-chip-text">Statistical Modeling</span>
           </div>
+          <span class="ta-panel-title">Data Analytics &amp; BI</span>
         </div>
       </div>
 
@@ -469,7 +479,7 @@
   </section>
 
   <!-- ===== HALFTONE WORDMARK FOOTER ===== -->
-  <footer id="hwf-root" class="hwf-root" data-wordmark="ayushi" data-bg="#0c0c0b" data-ink="#e9e4da" data-warm="#e9762b" style="height: 560px; --hwf-bg: #0c0c0b; --hwf-ink: #e9e4da; --hwf-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;">
+  <footer id="hwf-root" class="hwf-root" data-hwf-root data-wordmark="ayushi" data-bg="#0c0c0b" data-ink="#e9e4da" data-warm="#e9762b" style="height: 560px; --hwf-bg: #0c0c0b; --hwf-ink: #e9e4da; --hwf-mono: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, Consolas, monospace;">
     <canvas aria-hidden="true"></canvas>
     <span class="hwf-sr">ayushi</span>
     <div class="hwf-top">
@@ -669,6 +679,7 @@
   <script src="dotted-surface.js"></script>
   <script src="exp-hover.js"></script>
   <script src="halftone-footer.js"></script>
+  <script src="tech-accordion.js"></script>
   <script src="script.js"></script>
 </body>
 

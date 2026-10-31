@@ -61,9 +61,7 @@
 
   /* --- footer effect --- */
 
-  function init() {
-    var root = document.getElementById('hwf-root');
-    if (!root) return;
+  function initRoot(root) {
     var canvas = root.querySelector('canvas');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
@@ -309,6 +307,10 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
+  }
+
+  function init() {
+    document.querySelectorAll('[data-hwf-root]').forEach(initRoot);
   }
 
   if (document.readyState === 'loading') {

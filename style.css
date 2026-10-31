@@ -2674,3 +2674,22 @@ body.vapour-lock {
 @media (prefers-reduced-motion: reduce) {
   .hwf-col a, .hwf-up { transition: none; }
 }
+
+/* ===== TECH ARSENAL ACCORDION (1 Nov 2026) — same animation as the reference image accordion: 60px -> 400px, 700ms ease-in-out, vertical title when collapsed, horizontal bottom-center when active ===== */
+.ta-accordion { display: flex; flex-direction: row; align-items: stretch; justify-content: center; gap: 16px; overflow-x: auto; padding: 16px; }
+.ta-panel { position: relative; height: 450px; width: 60px; flex-shrink: 0; border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 700ms ease-in-out; }
+.ta-panel.ta-active { width: 400px; }
+.ta-panel-bg { position: absolute; inset: 0; }
+.ta-panel-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+.ta-panel-chips { position: absolute; inset: 0; padding: 28px 22px 64px; overflow-y: auto; opacity: 0; visibility: hidden; transition: opacity 300ms ease-in-out, visibility 300ms; }
+.ta-panel.ta-active .ta-panel-chips { opacity: 1; visibility: visible; }
+.ta-panel-title { position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%) rotate(90deg); color: #fff; font-size: 18px; font-weight: 600; white-space: nowrap; transition: all 300ms ease-in-out; }
+.ta-panel.ta-active .ta-panel-title { bottom: 24px; transform: translateX(-50%) rotate(0deg); }
+.ta-bg-0 { background: linear-gradient(160deg, #2a1650, #0b0b12); }
+.ta-bg-1 { background: linear-gradient(160deg, #0f3a44, #0b0b12); }
+.ta-bg-2 { background: linear-gradient(160deg, #3d1226, #0b0b12); }
+.ta-bg-3 { background: linear-gradient(160deg, #123524, #0b0b12); }
+.ta-bg-4 { background: linear-gradient(160deg, #12294d, #0b0b12); }
+@media (max-width: 640px) {
+  .ta-accordion { justify-content: flex-start; }
+}
