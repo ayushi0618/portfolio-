@@ -3,7 +3,7 @@
    Recreated from the 21st.dev circular-gallery concept in
    vanilla JS (this site is static HTML/CSS/JS, not React).
 
-   8 project cards arranged on a 3D ring (rotateY + translateZ).
+   10 project cards arranged on a 3D ring (rotateY + translateZ).
    This IS the projects section (the old static list was removed).
 
    Fixes (16 Oct 2026):
@@ -73,7 +73,7 @@
       desc: 'End-to-end data analytics platform aggregating user touchpoints across web, email, and social ad funnels. Performs RFM customer segmentation, predictive lifetime value (CLV) scoring, and conversion anomaly detection for strategic marketing optimization.',
       img: 'assets/marketing-1.png', alt: 'OmniChannel Intelligence & RFM Segmentation Dashboard',
       live: null,
-      repo: 'https://github.com/ayushi0618'
+      repo: 'https://github.com/ayushi0618/customer-intelligence-platform-'
     },
     {
       n: '07', title: 'BondPoints.ai — AI-Assisted Social Relationship Tracker',
@@ -84,12 +84,29 @@
       repo: 'https://github.com/ayushi0618/BondPoints.ai'
     },
     {
-      n: '08', title: 'BharatMandi — Agricultural Commodity Price Intelligence',
-      stack: 'Python, FastAPI, SQL, React, Recharts, Open Government Data (Agmarknet)',
-      desc: 'An indigenous Indian agri-fintech analytics portal tracking wholesale mandi commodity rates across UP and NCR districts. Provides local farmers and traders with real-time price trend alerts, seasonal forecasting, and bilingual mandi comparisons.',
-      img: 'assets/bharatmandi-1.png', alt: 'BharatMandi Commodity Rates & Price Forecast Dashboard',
+      n: '08', title: 'Olist Brazilian E-Commerce Analytics',
+      stack: 'Python, SQL, Pandas, Streamlit, Excel, Power BI',
+      desc: 'End-to-end marketplace audit of 96,478 delivered orders (GMV R$ 13.22M) examining delivery delays, satisfaction drivers, and repeat purchase barriers. Late orders averaged 2.57 stars vs 4.30 for on-time deliveries, and a 3.0% repeat rate flags the key revenue leak. Delivered as a 4-page interactive Streamlit app, an 11-sheet Excel financial model, and a Power BI dashboard pack.',
+      img: 'assets/olist-top-categories.png', alt: 'Olist top product categories by revenue chart',
+      live: 'https://data-analytics-project-2-euhenhxfrokktgat4nhfhv.streamlit.app/',
+      repo: 'https://github.com/ayushi0618/Data-Analytics-Project-2'
+    },
+    {
+      n: '09', title: 'A/B Testing & Statistical Analysis',
+      stack: 'Python, SciPy, SQL, Statistics',
+      desc: 'Rigorous experimental analysis of a landing page redesign: 294,478 raw user rows cleaned, Sample Ratio Mismatch checked (p = 0.947), and z-tests, chi-square, bootstrap, and power calculations run in SciPy. No significant conversion lift (Control 12.04% vs Variant 11.88%, z = -1.31, p = 0.190) — recommendation: halt deployment. Full statistical report linked below.',
+      img: 'assets/ab-forest.png', alt: 'A/B test effect-size forest plot',
       live: null,
-      repo: 'https://github.com/ayushi0618'
+      repo: null,
+      report: 'assets/Ayushi_Singh_AB_Testing_Report.pdf'
+    },
+    {
+      n: '10', title: 'Retail Analyzer (Retail Pulse)',
+      stack: 'Python, SQL, Pandas, Scikit-learn',
+      desc: 'Customer-intelligence engine segmenting e-commerce buyers via RFM behavior for targeted CRM retention. A 3NF SQLite/SQLAlchemy schema with log1p skew-corrected RFM scoring and K-Means clustering groups customers into 10 tactical CRM segments — Champions (19.9% of users) drive 38.9% of revenue, and Champions + Loyal together generate 57.9%.',
+      img: 'assets/retail-pulse-cover.png', alt: 'Retail Pulse project cover',
+      live: null,
+      repo: 'https://github.com/ayushi0618/Data-Analytics-Project-'
     }
   ];
 
@@ -120,7 +137,8 @@
 
     var links = '';
     if (p.live) links += '<a href="' + p.live + '" target="_blank" rel="noopener noreferrer" class="cg-link">Live ↗</a>';
-    links += '<a href="' + p.repo + '" target="_blank" rel="noopener noreferrer" class="cg-link">GitHub ↗</a>';
+    if (p.repo) links += '<a href="' + p.repo + '" target="_blank" rel="noopener noreferrer" class="cg-link">GitHub ↗</a>';
+    if (p.report) links += '<a href="' + p.report + '" target="_blank" rel="noopener noreferrer" class="cg-link">Report ↗</a>';
 
     el.innerHTML =
       '<div class="cg-img-wrap"><img src="' + p.img + '" alt="' + p.alt + '" loading="lazy" draggable="false"></div>' +

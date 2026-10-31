@@ -173,6 +173,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ===== RESUME TABS (Software Development / Data Analyst) =====
+  if (resumeModal) {
+    const tabs = resumeModal.querySelectorAll('.resume-tab');
+    const daPane = resumeModal.querySelector('#resume-da');
+    const sheet = resumeModal.querySelector('.resume-sheet');
+    const setTab = (tab) => {
+      const isDA = tab === 'da';
+      tabs.forEach((t) => {
+        const active = t.getAttribute('data-resume-tab') === tab;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      if (sheet) sheet.style.display = isDA ? 'none' : '';
+      if (daPane) daPane.hidden = !isDA;
+      resumeModal.classList.toggle('da-active', isDA);
+    };
+    tabs.forEach((t) => {
+      t.addEventListener('click', () => setTab(t.getAttribute('data-resume-tab')));
+    });
+  }
+
   // ===== 10. TYPEWRITER ANIMATION =====
   const typewriterElement = document.getElementById('typewriter');
   if (typewriterElement) {

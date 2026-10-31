@@ -20,19 +20,21 @@
       stack: 'React • Tailwind CSS'
     },
     jpmorgan: {
-      img: null,
+      img: 'assets/logos/jpmorganchase.svg',
+      logo: true,
       title: 'J.P. Morgan — Software Engineering Job Simulation',
       desc: 'Forage virtual experience: interfacing with a stock price data feed and displaying data visually for traders.',
       stack: 'Stock price data feed • Data visualization'
     },
     tata: {
-      img: null,
+      img: 'assets/logos/tata.svg',
+      logo: true,
       title: 'Tata \u2014 GenAI Powered Data Analytics',
       desc: 'Forage virtual experience: GenAI-powered data analytics job simulation.',
       stack: 'Data Analytics \u2022 GenAI'
     },
     codelikelily: {
-      img: null,
+      img: 'assets/logos/codelikelily.png',
       title: 'Code Like Lily \u2014 YouTube',
       desc: 'Animated coding explainers and interview-prep content: DSA visualized, AI topics, build-in-public dev journey.',
       stack: 'Content Creation \u2022 DSA \u2022 Video Production'
@@ -58,7 +60,7 @@
       if (!p) return;
       clearTimeout(hideTimer);
       card.innerHTML =
-        (p.img ? '<img class="exp-hover-img" src="' + p.img + '" alt="" loading="lazy">' : '') +
+        (p.img ? '<img class="exp-hover-img' + (p.logo ? ' exp-hover-logo' : '') + '" src="' + p.img + '" alt="" loading="lazy">' : '') +
         '<div class="exp-hover-body">' +
         '<div class="exp-hover-title">' + p.title + '</div>' +
         '<div class="exp-hover-desc">' + p.desc + '</div>' +

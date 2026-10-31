@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="experience-bar reveal">
-        <div class="exp-media exp-monogram"><span class="chrome-text">FW</span></div>
+        <div class="exp-media exp-media-logo"><img src="assets/logos/fiverr.svg" alt="Fiverr" loading="lazy"><img src="assets/logos/upwork.svg" alt="Upwork" loading="lazy"></div>
         <div class="exp-details">
           <h4>Freelance Full-Stack Developer &mdash; <span class="exp-hover" data-preview="freelance">Fiverr</span> &amp; <span class="exp-hover" data-preview="freelance">Upwork</span> &bull; Remote</h4>
           <div class="exp-date">Oct 2026 &ndash; Present</div>
@@ -88,7 +88,7 @@
         </div>
       </div>
       <div class="experience-bar reveal">
-        <div class="exp-media exp-monogram"><span class="exp-mono-play" aria-hidden="true">&#9654;</span><span class="exp-mono-sub chrome-text">CLL</span></div>
+        <div class="exp-media"><img src="assets/logos/codelikelily.png" alt="Code Like Lily channel logo" loading="lazy"></div>
         <div class="exp-details">
           <h4>Content Creator &mdash; <span class="exp-hover" data-preview="codelikelily">Code Like Lily</span> (YouTube)</h4>
           <div class="exp-date">Oct 2026 &ndash; Present</div>
@@ -107,7 +107,7 @@
         </div>
       </div>
       <div class="experience-bar reveal">
-        <div class="exp-media exp-monogram"><span class="chrome-text">JPM</span></div>
+        <div class="exp-media exp-media-logo"><img class="logo-wide" src="assets/logos/jpmorganchase.svg" alt="JPMorgan Chase logo" loading="lazy"></div>
         <div class="exp-details">
           <h4><span class="exp-hover" data-preview="jpmorgan">J.P. Morgan</span> (Via Forage) &bull; Virtual</h4>
           <div class="exp-date">Sep 2025</div>
@@ -126,7 +126,7 @@
         </div>
       </div>
       <div class="experience-bar reveal">
-        <div class="exp-media exp-monogram"><span class="chrome-text">TATA</span></div>
+        <div class="exp-media exp-media-logo"><img class="logo-wide" src="assets/logos/tata.svg" alt="Tata logo" loading="lazy"></div>
         <div class="exp-details">
           <h4><span class="exp-hover" data-preview="tata">Tata</span> GenAI Powered Data Analytics Job Simulation (Via Forage) &bull; Virtual</h4>
           <div class="exp-date">19 Sep 2026</div>
@@ -295,6 +295,10 @@
           <button id="close-resume-btn" class="modal-close" aria-label="Close modal">&times;</button>
         </div>
       </div>
+      <div class="resume-tabs" role="tablist" aria-label="Resume version">
+        <button type="button" class="resume-tab active" data-resume-tab="sde" role="tab" aria-selected="true">Software Development</button>
+        <button type="button" class="resume-tab" data-resume-tab="da" role="tab" aria-selected="false">Data Analyst</button>
+      </div>
       <div class="modal-body" id="printable-resume">
         <div class="resume-sheet">
           <div class="res-head">
@@ -419,9 +423,14 @@
             <p class="res-text">
               • IBM Cybersecurity Fundamentals • JPMorgan Software Engineering Job Simulation (Forage) • Azure AI
               Fundamentals AI-900 (in progress)<br>
-              • 150+ LeetCode problems solved • University & National level hackathons and technical competitions
+              • 200+ LeetCode problems solved • University & National level hackathons and technical competitions
             </p>
           </div>
+        </div>
+        <div class="resume-pane-da" id="resume-da" hidden>
+          <p class="resume-da-note">Data Analyst resume — same resume used for data-analyst applications (Retail Analyzer, A/B Testing, Olist).</p>
+          <a class="btn-gradient btn-sm resume-da-download" href="assets/Ayushi_Singh_Data_Analyst_Resume.pdf" download>⬇ Download Data Analyst Resume (PDF)</a>
+          <embed class="resume-pdf-embed" src="assets/Ayushi_Singh_Data_Analyst_Resume.pdf" type="application/pdf">
         </div>
       </div>
     </div>
