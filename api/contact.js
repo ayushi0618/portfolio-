@@ -24,12 +24,12 @@ module.exports = async (req, res) => {
     }
   }
 
-  const subject = String((body && body.subject) || '').trim().slice(0, 200);
   const name = String((body && body.name) || '').trim().slice(0, 100);
-  const phone = String((body && body.phone) || '').trim().slice(0, 50);
+  const company = String((body && body.company) || '').trim().slice(0, 100);
+  const email = String((body && body.email) || '').trim().slice(0, 200);
   const message = String((body && body.message) || '').trim().slice(0, 5000);
-  if (!name || !message) {
-    return res.status(400).json({ error: 'Name and message are required' });
+  if (!name || !message || !email || !email.includes('@')) {
+    return res.status(400).json({ error: 'Name, email and message are required' });
   }
 
   const to = process.env.CONTACT_TO_EMAIL || 'ayushi.singh0618@gmail.com';
@@ -41,8 +41,9 @@ module.exports = async (req, res) => {
     body: JSON.stringify({
       from: from,
       to: [to],
-      subject: 'Portfolio contact: ' + (subject || 'New message'),
-      text: 'Name: ' + name + '\nPhone: ' + (phone || '-') + '\nSubject: ' + (subject || '-') + '\n\n' + message,
+      subject: 'Portfolio contact from ' + name + (company ? ' (' + company + ')' : ''),
+      reply_to: email,
+      text: 'Name: ' + name + '\nCompany: ' + (company || '-') + '\nEmail: ' + email + '\n\n' + message,
     }),
   });
 

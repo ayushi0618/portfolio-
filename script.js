@@ -69,9 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const data = {
-        subject: document.getElementById('contact-subject').value.trim(),
         name: document.getElementById('contact-name').value.trim(),
-        phone: document.getElementById('contact-phone').value.trim(),
+        company: document.getElementById('contact-company').value.trim(),
+        email: document.getElementById('contact-email').value.trim(),
         message: document.getElementById('contact-message').value.trim(),
       };
 
@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
             statusEl.classList.add('info');
           }
           window.location.href = 'mailto:ayushi.singh0618@gmail.com?subject=' +
-            encodeURIComponent('Portfolio contact: ' + (data.subject || 'Hello')) +
-            '&body=' + encodeURIComponent('Name: ' + data.name + '\nPhone: ' + data.phone + '\n\n' + data.message);
+            encodeURIComponent('Portfolio contact from ' + data.name) +
+            '&body=' + encodeURIComponent('Name: ' + data.name + '\nCompany: ' + data.company + '\nEmail: ' + data.email + '\n\n' + data.message);
           restore();
           return;
         }
