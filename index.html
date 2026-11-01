@@ -471,16 +471,15 @@
   <section class="contact" id="contact">
     <div class="contact-inner">
       <div class="contact-left">
-        <div class="contact-emoji">💡</div>
-        <div class="contact-hand">
-          <img src="assets/3d-hand.jpg" alt="" aria-hidden="true">
-        </div>
-        <h2 class="contact-heading reveal">LET'S<br>BUILD<br>TOGETHER</h2>
+        <p class="contact-avail reveal"><span class="contact-avail-dot"></span>Available for projects</p>
+        <h2 class="contact-heading reveal">Let's build<br><span class="contact-heading-gray">together</span></h2>
+        <canvas class="contact-globe reveal" id="contact-globe" width="300" height="300" aria-hidden="true"></canvas>
         <a href="mailto:ayushi.singh0618@gmail.com" class="contact-email reveal delay-1">ayushi.singh0618@gmail.com</a>
         <p class="contact-subinfo reveal delay-2">
           📞 +91 8766315441<br>
           📍 Ghaziabad, Uttar Pradesh, India
         </p>
+        <a class="contact-arrow reveal delay-3" href="#contact-form" aria-label="Jump to the contact form">↘</a>
       </div>
       <form class="contact-form" id="contact-form">
         <div class="form-group reveal delay-1">
@@ -503,6 +502,7 @@
             required></textarea>
         </div>
         <button type="submit" class="btn-send reveal delay-4" id="contact-submit">Send Message</button>
+        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </section>
@@ -591,6 +591,7 @@
   <script src="tech-accordion.js"></script>
   <script src="cert-tunnel.js"></script>
   <script src="dsa-spotlight.js"></script>
+  <script src="contact-globe.js"></script>
   <script src="script.js"></script>
 </body>
 

@@ -49,37 +49,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // ===== 5. CONTACT FORM HANDLING =====
+  // ===== 5. CONTACT FORM HANDLING (real backend: POST /api/contact) =====
   const contactForm = document.getElementById('contact-form');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const submitBtn = document.getElementById('contact-submit');
+      const statusEl = document.getElementById('contact-status');
       const originalText = submitBtn.textContent;
 
-      // Animate button
       submitBtn.textContent = 'Sending...';
       submitBtn.style.opacity = '0.6';
       submitBtn.disabled = true;
+      if (statusEl) {
+        statusEl.textContent = '';
+        statusEl.className = 'contact-status';
+      }
 
-      // Simulate send (replace with real API call)
-      setTimeout(() => {
-        submitBtn.textContent = 'Sent! ✓';
+      const data = {
+        subject: document.getElementById('contact-subject').value.trim(),
+        name: document.getElementById('contact-name').value.trim(),
+        phone: document.getElementById('contact-phone').value.trim(),
+        message: document.getElementById('contact-message').value.trim(),
+      };
+
+      const restore = () => {
+        submitBtn.textContent = originalText;
         submitBtn.style.opacity = '1';
-        submitBtn.style.background = '#000';
-        submitBtn.style.color = '#fff';
+        submitBtn.disabled = false;
+      };
 
-        // Reset after 2 seconds
-        setTimeout(() => {
-          submitBtn.textContent = originalText;
-          submitBtn.style.background = '';
-          submitBtn.style.color = '';
-          submitBtn.disabled = false;
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          submitBtn.textContent = 'Sent! ✓';
+          submitBtn.style.opacity = '1';
+          submitBtn.style.background = '#000';
+          submitBtn.style.color = '#fff';
+          if (statusEl) {
+            statusEl.textContent = 'Thanks — your message is on its way. Ayushi will reply soon.';
+            statusEl.classList.add('success');
+          }
           contactForm.reset();
-        }, 2000);
-      }, 1500);
+          setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.style.background = '';
+            submitBtn.style.color = '';
+            submitBtn.disabled = false;
+          }, 3000);
+          return;
+        }
+
+        if (res.status === 501) {
+          // Backend not connected yet: fall back to the visitor's email app (never fake a send).
+          if (statusEl) {
+            statusEl.textContent = 'Direct send is not connected yet — opening your email app with this message instead.';
+            statusEl.classList.add('info');
+          }
+          window.location.href = 'mailto:ayushi.singh0618@gmail.com?subject=' +
+            encodeURIComponent('Portfolio contact: ' + (data.subject || 'Hello')) +
+            '&body=' + encodeURIComponent('Name: ' + data.name + '\nPhone: ' + data.phone + '\n\n' + data.message);
+          restore();
+          return;
+        }
+
+        throw new Error('send failed');
+      } catch (err) {
+        if (statusEl) {
+          statusEl.textContent = 'Could not send just now — please email ayushi.singh0618@gmail.com directly.';
+          statusEl.classList.add('error');
+        }
+        restore();
+      }
     });
   }
 
