@@ -1963,6 +1963,11 @@ img {
   .resume-sde-pdf {
     display: none !important;
   }
+
+  .resume-pane-da > .resume-da-note,
+  .resume-pane-da > .resume-da-download {
+    display: none !important;
+  }
 }
 
 
