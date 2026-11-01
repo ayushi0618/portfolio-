@@ -2650,6 +2650,19 @@ body.vapour-lock {
 .dsa-spot { position: relative; overflow: hidden; }
 .dsa-spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(56, 189, 248, 0.16), transparent 70%); opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
 .dsa-spot:hover::before { opacity: 1; }
+
+/* ===== DSA STRIP (compact, inside Tech Arsenal) ===== */
+.dsa-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 20px 24px; margin-top: 22px; }
+.dsa-strip-main { display: flex; align-items: center; gap: 16px; }
+.dsa-strip-stats { display: flex; flex-direction: column; gap: 2px; }
+.dsa-strip-title { font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); }
+.dsa-strip-count { font-size: 20px; font-weight: 800; }
+.dsa-strip-split { color: rgba(255, 255, 255, 0.75); font-size: 13.5px; }
+.dsa-strip-topics { display: flex; flex-wrap: wrap; gap: 10px; }
+.dsa-strip-chip { font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, 0.85); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 5px 12px; white-space: nowrap; }
+.dsa-strip-chip b { color: #38bdf8; }
+.dsa-strip-links { display: flex; gap: 16px; margin-left: auto; }
+.dsa-strip-source { width: 100%; color: rgba(255, 255, 255, 0.4); font-size: 12.5px; margin: 0; }
 @media (max-width: 768px) {
   .dsa-topic-grid { grid-template-columns: 1fr; }
   .dsa-stats-card { padding: 22px; }
