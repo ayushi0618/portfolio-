@@ -2633,9 +2633,28 @@ body.vapour-lock {
 .dsa-topic-count { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #38bdf8; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 4px 12px; white-space: nowrap; }
 .dsa-topic-focus { color: rgba(255, 255, 255, 0.55); font-size: 13.5px; }
 .dsa-source { color: rgba(255, 255, 255, 0.4); font-size: 12.5px; margin-top: 18px; }
+
+/* ===== DSA BENTO + SPOTLIGHT (1 Nov 2026) ===== */
+.dsa-bento { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 22px; }
+.dsa-bento-hero { grid-column: span 2; grid-row: span 2; display: flex; align-items: center; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 28px 32px; }
+.dsa-bento-cell { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 22px 24px; }
+.dsa-bento-num { font-size: clamp(28px, 3vw, 36px); font-weight: 800; line-height: 1.1; }
+.dsa-bento-label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); margin-top: 4px; }
+.dsa-bento-bar { height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; margin-top: 12px; overflow: hidden; }
+.dsa-bento-fill { display: block; height: 100%; border-radius: 999px; }
+.dsa-fill-easy { background: #2fbf71; }
+.dsa-fill-medium { background: #f5a623; }
+.dsa-fill-hard { background: #f87171; }
+.dsa-bento-links { display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+.dsa-bento-hero:hover, .dsa-bento-cell:hover { border-color: rgba(255, 255, 255, 0.25); }
+.dsa-spot { position: relative; overflow: hidden; }
+.dsa-spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(56, 189, 248, 0.16), transparent 70%); opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+.dsa-spot:hover::before { opacity: 1; }
 @media (max-width: 768px) {
   .dsa-topic-grid { grid-template-columns: 1fr; }
   .dsa-stats-card { padding: 22px; }
+  .dsa-bento { grid-template-columns: 1fr; }
+  .dsa-bento-hero { grid-column: span 1; grid-row: span 1; padding: 22px; }
 }
 
 /* DATA ANALYTICS badge on DA project cards */
