@@ -16,7 +16,7 @@
     {
       icon: '🏦',
       title: 'J.P. Morgan — Software Engineering Job Simulation',
-      org: 'J.P. Morgan (Via Forage) • Virtual',
+      org: 'J.P. Morgan • Virtual',
       date: 'Sep 2025',
       status: 'completed',
       desc: 'Completed practical software engineering tasks: backend microservices, interface integration, and a stock price data feed with visual display for traders.'

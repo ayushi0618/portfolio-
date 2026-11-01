@@ -23,14 +23,14 @@
       img: 'assets/logos/jpmorganchase.svg',
       logo: true,
       title: 'J.P. Morgan — Software Engineering Job Simulation',
-      desc: 'Forage virtual experience: interfacing with a stock price data feed and displaying data visually for traders.',
+      desc: 'Virtual experience: interfacing with a stock price data feed and displaying data visually for traders.',
       stack: 'Stock price data feed • Data visualization'
     },
     tata: {
       img: 'assets/logos/tata.svg',
       logo: true,
       title: 'Tata \u2014 GenAI Powered Data Analytics',
-      desc: 'Forage virtual experience: GenAI-powered data analytics job simulation.',
+      desc: 'Virtual experience: GenAI-powered data analytics job simulation.',
       stack: 'Data Analytics \u2022 GenAI'
     },
     codelikelily: {

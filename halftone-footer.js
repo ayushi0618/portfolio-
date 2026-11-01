@@ -115,7 +115,7 @@
       var face = fontWeight + ' 100px ' + fontFamily;
       m.font = face;
       var word = wordmark || ' ';
-      var fit = hwfFitSize(m.measureText(word).width, w * 1.02);
+      var fit = hwfFitSize(m.measureText(word).width, w * 0.96);
       m.font = fontWeight + ' ' + fit + 'px ' + fontFamily;
       var box = m.measureText(word);
       var cap = box.actualBoundingBoxAscent || fit * 0.72;

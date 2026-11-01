@@ -1959,6 +1959,10 @@ img {
     page-break-inside: avoid;
     break-inside: avoid;
   }
+
+  .resume-sde-pdf {
+    display: none !important;
+  }
 }
 
 
@@ -2601,16 +2605,14 @@ body.vapour-lock {
 .resume-da-note { color: rgba(255, 255, 255, 0.7); font-size: 14px; margin-bottom: 16px; }
 .resume-da-download { display: inline-block; text-decoration: none; margin-bottom: 18px; }
 .resume-pdf-embed { width: 100%; height: 720px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; background: #fff; }
+.resume-sde-pdf { margin-bottom: 28px; }
 
 /* ===== DSA SECTION (31 Oct 2026) ===== */
 .dsa-section { padding: 80px 5% 40px; }
 .dsa-container { max-width: 1100px; margin: 0 auto; }
-.dsa-pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 999px; padding: 6px 16px; font-size: 12px; letter-spacing: 1.5px; font-weight: 700; color: #ffd278; margin-bottom: 18px; }
-.dsa-title { font-size: clamp(34px, 5vw, 56px); font-weight: 900; letter-spacing: -1px; margin-bottom: 12px; }
-.dsa-sub { color: rgba(255, 255, 255, 0.65); font-size: 15.5px; line-height: 1.6; max-width: 640px; margin-bottom: 28px; }
-.dsa-stats-card { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 28px 32px; margin-bottom: 22px; }
+.dsa-stats-card { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 28px 32px; margin-bottom: 22px; }
 .dsa-stats-main { display: flex; align-items: center; gap: 20px; }
-.dsa-code { font-size: 30px; font-weight: 900; color: #ffd278; background: rgba(255, 210, 120, 0.1); border: 1px solid rgba(255, 210, 120, 0.3); border-radius: 14px; padding: 12px 14px; }
+.dsa-code { font-size: 30px; font-weight: 900; color: rgba(255, 255, 255, 0.9); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px; padding: 12px 14px; }
 .dsa-count { font-size: clamp(24px, 3vw, 32px); font-weight: 800; }
 .dsa-badge { display: inline-block; vertical-align: middle; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #2fbf71; background: rgba(47, 191, 113, 0.14); border: 1px solid rgba(47, 191, 113, 0.35); border-radius: 6px; padding: 3px 9px; margin-left: 8px; }
 .dsa-split { color: rgba(255, 255, 255, 0.75); font-size: 14px; margin-top: 6px; }
@@ -2618,15 +2620,12 @@ body.vapour-lock {
 .dsa-medium { color: #f5a623; font-weight: 700; }
 .dsa-hard { color: #f87171; font-weight: 700; }
 .dsa-note { color: rgba(255, 255, 255, 0.55); font-size: 13.5px; margin-top: 6px; }
-.dsa-profile-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-.dsa-btn { display: inline-block; background: var(--gradient-accent); color: #fff; font-weight: 700; font-size: 14px; padding: 12px 22px; border-radius: 12px; text-decoration: none; }
-.dsa-btn-ghost { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.2); }
 .dsa-topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.dsa-topic-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 16px; padding: 22px 24px; transition: var(--transition-smooth); }
-.dsa-topic-card:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.22); transform: translateY(-3px); }
+.dsa-topic-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 22px 24px; transition: var(--transition-smooth); }
+.dsa-topic-card:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.25); transform: translateY(-3px); }
 .dsa-topic-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
 .dsa-topic-name { font-size: 17px; font-weight: 800; }
-.dsa-topic-count { font-size: 12px; font-weight: 700; color: #ffd278; background: rgba(255, 210, 120, 0.1); border: 1px solid rgba(255, 210, 120, 0.28); border-radius: 999px; padding: 4px 11px; white-space: nowrap; }
+.dsa-topic-count { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: #38bdf8; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 4px 12px; white-space: nowrap; }
 .dsa-topic-focus { color: rgba(255, 255, 255, 0.55); font-size: 13.5px; }
 .dsa-source { color: rgba(255, 255, 255, 0.4); font-size: 12.5px; margin-top: 18px; }
 @media (max-width: 768px) {
@@ -2692,4 +2691,39 @@ body.vapour-lock {
 .ta-bg-4 { background: linear-gradient(160deg, #12294d, #0b0b12); }
 @media (max-width: 640px) {
   .ta-accordion { justify-content: flex-start; }
+}
+
+/* ===== CERTIFICATIONS TUNNEL (vanilla port of perspective-tunnel-hero, scroll-linked) ===== */
+.cert-tunnel-section { padding: 80px 5% 40px; }
+.cert-tunnel-container { max-width: 1100px; margin: 0 auto; }
+.cert-tunnel-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.cert-tunnel-stage { position: relative; }
+.cert-tunnel-bg, .cert-tunnel-ring { display: none; }
+.cert-tunnel-anchor { text-align: center; margin-bottom: 20px; }
+.cert-tunnel-anchor-title { display: inline-block; font-size: clamp(36px, 6vw, 72px); font-weight: 900; letter-spacing: -2px; }
+.cert-tunnel-plane { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; position: relative; }
+.cert-tunnel-card { display: flex; flex-direction: column; gap: 10px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 22px 20px; color: #fff; text-decoration: none; transition: border-color 0.3s, box-shadow 0.3s; }
+.cert-tunnel-card:hover { border-color: rgba(56, 189, 248, 0.7); box-shadow: 0 20px 50px rgba(56, 189, 248, 0.15); }
+.cert-tunnel-mono { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 12px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
+.cert-tunnel-name { font-size: 16px; font-weight: 700; line-height: 1.4; }
+.cert-tunnel-meta { font-size: 13px; color: rgba(255, 255, 255, 0.65); }
+.cert-tunnel-view { font-size: 13px; font-weight: 600; color: #38bdf8; margin-top: auto; }
+.cert-tunnel-hint { text-align: center; color: rgba(255, 255, 255, 0.6); font-size: 15px; margin-top: 28px; }
+.cert-tunnel-stage.is-tunnel { height: 85vh; min-height: 560px; overflow: hidden; perspective: 1200px; }
+.cert-tunnel-stage.is-tunnel .cert-tunnel-bg { display: block; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px); background-size: 28px 28px; -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 75%); mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 75%); }
+.cert-tunnel-stage.is-tunnel .cert-tunnel-ring { display: block; position: absolute; left: 50%; top: 50%; border-radius: 9999px; transform: translate(-50%, -50%); pointer-events: none; }
+.cert-tunnel-ring-1 { width: 48vmin; height: 48vmin; border: 1px solid rgba(56, 189, 248, 0.18); }
+.cert-tunnel-ring-2 { width: 76vmin; height: 76vmin; border: 1px dashed rgba(255, 255, 255, 0.12); }
+.cert-tunnel-stage.is-tunnel .cert-tunnel-anchor { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; margin: 0; pointer-events: none; z-index: 0; }
+.cert-tunnel-stage.is-tunnel .cert-tunnel-anchor-title { font-size: clamp(40px, 8vw, 96px); will-change: transform, opacity; }
+.cert-tunnel-stage.is-tunnel .cert-tunnel-plane { position: absolute; inset: 0; display: block; transform-style: preserve-3d; pointer-events: none; }
+.cert-tunnel-stage.is-tunnel .cert-tunnel-card { position: absolute; left: 50%; top: 50%; width: 270px; aspect-ratio: 4 / 5; overflow: hidden; pointer-events: auto; opacity: 0; will-change: transform; }
+@media (max-width: 900px) {
+  .cert-tunnel-plane { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .cert-tunnel-plane { grid-template-columns: 1fr; }
+  .cert-tunnel-stage.is-tunnel { perspective: 900px; }
+  .cert-tunnel-stage.is-tunnel .cert-tunnel-card { padding: 16px; }
+  .cert-tunnel-stage.is-tunnel .cert-tunnel-name { font-size: 14px; }
 }
