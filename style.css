@@ -1082,7 +1082,9 @@ img {
 .cg-globe-wrap {
   position: relative;
   overflow: hidden;
-  height: 208px;
+  /* Dome cap at every width: the original's 208px clip only cuts a dome when the
+     column is ~470px wide; on narrow screens it revealed most of the sphere. */
+  aspect-ratio: 1 / 0.45;
   margin-top: 24px;
 }
 
