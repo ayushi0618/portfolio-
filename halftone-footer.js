@@ -76,6 +76,7 @@
     var dotGap = parseFloat(root.getAttribute('data-dot-gap') || '6');
     var radius = parseFloat(root.getAttribute('data-radius') || '80');
     var crop = parseFloat(root.getAttribute('data-crop') || '0.2');
+    var showFull = root.getAttribute('data-show-full') === 'true';
     var grain = parseFloat(root.getAttribute('data-grain') || '0.5');
     var fontFamily = '"Inter Tight", "Inter Variable", "Inter", "Helvetica Neue", Arial, system-ui, sans-serif';
     var fontWeight = 800;
@@ -122,7 +123,12 @@
       var c = Math.max(0, Math.min(0.6, crop));
       m.fillStyle = '#000';
       m.textBaseline = 'alphabetic';
-      m.fillText(word, (w - box.width) / 2, h + cap * c);
+      // showFull: baseline sits a full descent above the bottom edge, so
+      // descenders (the 'y' tail) and letter bottoms are never cut. The
+      // default cropped look keeps the baseline below the canvas.
+      var descent = box.actualBoundingBoxDescent || fit * 0.22;
+      var baseline = showFull ? h - descent - 2 : h + cap * c;
+      m.fillText(word, (w - box.width) / 2, baseline);
       var img = m.getImageData(0, 0, w, h).data;
 
       var gap = Math.max(3, dotGap);
