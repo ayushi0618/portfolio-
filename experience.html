@@ -216,11 +216,11 @@
         <p class="lw-perfect">Perfect</p>
         <h3 class="lw-talk-heading">Let's talk</h3>
         <div class="lw-pill-row">
-          <a class="lw-pill" href="#contact-form">
+          <button type="button" class="lw-pill" id="lw-book-call">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
             <span>Book a call</span>
             <span aria-hidden="true">↗</span>
-          </a>
+          </button>
         </div>
         <p class="lw-intro">15 min intro call</p>
       </div>
@@ -265,6 +265,38 @@
     </div>
   </section>
 
+
+  <!-- ===== BOOK A CALL: calendar modal ===== -->
+  <div class="bk-modal" id="bk-modal" hidden>
+    <div class="bk-backdrop" data-bk-close></div>
+    <div class="bk-card" role="dialog" aria-modal="true" aria-labelledby="bk-title">
+      <button type="button" class="bk-close" data-bk-close aria-label="Close">×</button>
+      <div id="bk-view-book">
+        <h3 class="bk-title" id="bk-title">Book a call</h3>
+        <p class="bk-sub">Pick a day and a time for a 15-minute intro call. Times are in IST.</p>
+        <div class="bk-cal-head">
+          <button type="button" class="bk-nav" id="bk-prev" aria-label="Previous month">‹</button>
+          <span class="bk-month" id="bk-month"></span>
+          <button type="button" class="bk-nav" id="bk-next" aria-label="Next month">›</button>
+        </div>
+        <div class="bk-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+        <div class="bk-days" id="bk-days"></div>
+        <p class="bk-slots-label">Time</p>
+        <div class="bk-slots" id="bk-slots"></div>
+        <div class="bk-fields">
+          <input class="bk-input" id="bk-name" type="text" placeholder="Your name" autocomplete="name">
+          <input class="bk-input" id="bk-email" type="email" placeholder="Your email" autocomplete="email">
+        </div>
+        <button type="button" class="bk-confirm" id="bk-confirm">Request this slot</button>
+        <p class="bk-note" id="bk-note"></p>
+      </div>
+      <div id="bk-view-done" hidden>
+        <h3 class="bk-title">Request sent</h3>
+        <p class="bk-sub" id="bk-done-text"></p>
+        <button type="button" class="bk-confirm" data-bk-close>Done</button>
+      </div>
+    </div>
+  </div>
   <footer class="footer" id="footer">
     <div class="footer-top">
       <div class="footer-name-wrap">

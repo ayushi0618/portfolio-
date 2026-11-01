@@ -1138,6 +1138,8 @@ img {
 .lw-pill {
   display: inline-flex;
   align-items: center;
+  font-family: inherit;
+  cursor: pointer;
   gap: 10px;
   padding: 14px 28px;
   border-radius: 999px;
@@ -3141,3 +3143,137 @@ body.vapour-lock {
   .cert-tunnel-stage.is-tunnel .cert-tunnel-card { padding: 16px; }
   .cert-tunnel-stage.is-tunnel .cert-tunnel-name { font-size: 14px; }
 }
+
+/* ===== BOOK A CALL CALENDAR MODAL ===== */
+.bk-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.bk-modal[hidden] { display: none; }
+.bk-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.bk-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+.bk-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  line-height: 1;
+  color: #737373;
+  cursor: pointer;
+}
+.bk-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 6px;
+}
+.bk-sub {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #737373;
+  margin-bottom: 18px;
+}
+.bk-cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.bk-month {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+}
+.bk-nav {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #d4d4d4;
+  background: #fff;
+  font-size: 18px;
+  color: #111;
+  cursor: pointer;
+}
+.bk-nav:disabled { opacity: 0.35; cursor: default; }
+.bk-weekdays,
+.bk-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+.bk-weekdays { font-size: 11px; letter-spacing: 1px; color: #9a9a9a; margin-bottom: 6px; }
+.bk-day {
+  aspect-ratio: 1 / 1;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: #111;
+  cursor: pointer;
+}
+.bk-day:disabled { color: #d4d4d4; cursor: default; }
+.bk-day.bk-selected { background: #111; color: #fff; }
+.bk-slots-label { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #737373; margin: 18px 0 10px; }
+.bk-slots { display: flex; flex-wrap: wrap; gap: 8px; }
+.bk-slot {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #d4d4d4;
+  background: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  color: #111;
+  cursor: pointer;
+}
+.bk-slot.bk-selected { background: #111; color: #fff; border-color: #111; }
+.bk-fields { display: grid; gap: 12px; margin-top: 18px; }
+.bk-input {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  font-family: inherit;
+  font-size: 15px;
+  color: #111;
+  outline: none;
+}
+.bk-input:focus { border-bottom-color: #111; }
+.bk-confirm {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.bk-confirm:disabled { opacity: 0.6; cursor: default; }
+.bk-note { margin-top: 12px; font-size: 13px; line-height: 1.5; color: #b91c1c; min-height: 20px; }
+.bk-note:empty { display: none; }
