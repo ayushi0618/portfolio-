@@ -131,6 +131,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ===== 5b. LETS WORK: circle click -> "Let's talk" state =====
+  const lwHead = document.querySelector('.lw-head');
+  const lwArrow = document.querySelector('.lw-arrow');
+  if (lwHead && lwArrow) {
+    lwArrow.addEventListener('click', () => {
+      lwHead.classList.add('lw-talk');
+    });
+  }
+
   // ===== 6. PARALLAX & ROTATION EFFECT ON 3D DECORATIVE ELEMENTS =====
   const aboutDecorElements = document.querySelectorAll('.about-decor');
   const heroDecorElements = document.querySelectorAll('.hero-decor');
