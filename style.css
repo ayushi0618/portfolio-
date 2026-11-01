@@ -1170,13 +1170,13 @@ img {
   color: #737373;
 }
 
-.cg-wrap {
+.cwg-wrap {
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
 }
 
-.cg-pill {
+.cwg-pill {
   display: inline-block;
   padding: 6px 16px;
   border-radius: 999px;
@@ -1189,13 +1189,13 @@ img {
   text-transform: uppercase;
 }
 
-.cg-heading {
+.cwg-heading {
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 800;
   margin: 16px 0 8px;
 }
 
-.cg-globe-wrap {
+.cwg-globe-wrap {
   position: relative;
   overflow: hidden;
   /* Dome cap at every width: the original's 208px clip only cuts a dome when the
@@ -1204,7 +1204,7 @@ img {
   margin-top: 24px;
 }
 
-.cg-globe {
+.cwg-globe {
   position: absolute;
   top: 0;
   left: 0;
@@ -1213,7 +1213,7 @@ img {
   aspect-ratio: 1 / 1;
 }
 
-.cg-globe-fade {
+.cwg-globe-fade {
   position: absolute;
   inset-inline: 0;
   bottom: 0;
@@ -1222,7 +1222,7 @@ img {
   pointer-events: none;
 }
 
-.cg-body {
+.cwg-body {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 60px;
@@ -1230,15 +1230,15 @@ img {
   align-items: start;
 }
 
-.cg-touch h4,
-.cg-form h4 {
+.cwg-touch h4,
+.cwg-form h4 {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 16px;
 }
 
-.cg-touch a,
-.cg-touch p {
+.cwg-touch a,
+.cwg-touch p {
   display: block;
   margin-bottom: 12px;
   font-size: 15px;
@@ -1246,15 +1246,15 @@ img {
   text-decoration: none;
 }
 
-.cg-touch a:hover {
+.cwg-touch a:hover {
   text-decoration: underline;
 }
 
-.cg-form .form-group {
+.cwg-form .form-group {
   margin-bottom: 18px;
 }
 
-.cg-form .btn-send {
+.cwg-form .btn-send {
   width: 100%;
   margin-top: 8px;
   padding: 14px;
@@ -1270,7 +1270,7 @@ img {
 }
 
 @media (max-width: 768px) {
-  .cg-body {
+  .cwg-body {
     grid-template-columns: 1fr;
     gap: 40px;
   }
