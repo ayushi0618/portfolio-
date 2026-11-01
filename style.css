@@ -2726,6 +2726,8 @@ body.vapour-lock {
 .ta-bg-2 { background: linear-gradient(160deg, #3d1226, #0b0b12); }
 .ta-bg-3 { background: linear-gradient(160deg, #123524, #0b0b12); }
 .ta-bg-4 { background: linear-gradient(160deg, #12294d, #0b0b12); }
+.ta-bg-5 { background: linear-gradient(160deg, #422006, #0b0b12); }
+.skill-chip[href] { color: rgba(255, 255, 255, 0.85); text-decoration: none; }
 @media (max-width: 640px) {
   .ta-accordion { justify-content: flex-start; }
 }
