@@ -1079,12 +1079,29 @@ img {
   margin: 16px 0 8px;
 }
 
+.cg-globe-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 208px;
+  margin-top: 24px;
+}
+
 .cg-globe {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
-  width: 380px;
-  height: 380px;
-  max-width: 100%;
-  margin: 10px auto 30px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.cg-globe-fade {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 50%;
+  background: linear-gradient(to top, var(--bg-light), transparent);
+  pointer-events: none;
 }
 
 .cg-body {
@@ -1142,10 +1159,6 @@ img {
   .lw-head-row {
     flex-direction: column;
     align-items: flex-start;
-  }
-  .cg-globe {
-    width: 300px;
-    height: 300px;
   }
 }
 
