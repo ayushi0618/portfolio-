@@ -56,7 +56,14 @@ module.exports = async (req, res) => {
     'Contact: ayushi.singh0618@gmail.com.\n' +
     '- Open to full-stack developer and data analyst roles. Based in Ghaziabad, India.';
 
-  const models = ['gemini-2.0-flash', 'gemini-1.5-flash'];
+  // Model chain: newest first. gemini-2.0-flash / gemini-1.5-flash were
+  // retired and now answer 404; a 404 falls through to the next model.
+  const models = [
+    'gemini-2.5-flash',
+    'gemini-3.5-flash-lite',
+    'gemini-2.0-flash',
+    'gemini-1.5-flash',
+  ];
   let lastError = { status: 502, detail: 'Chat service error' };
 
   for (const model of models) {
