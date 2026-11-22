@@ -35,9 +35,11 @@ module.exports = async (req, res) => {
   const systemInstruction =
     'You are a helpful assistant on Ayushi Singh\'s portfolio website, answering ' +
     'recruiters\' and visitors\' questions about her. Use ONLY the facts below. ' +
-    'Never invent facts, dates, numbers or links. If asked something not covered ' +
-    'by the facts, say you do not have that information and suggest emailing ' +
-    'ayushi.singh0618@gmail.com. Keep answers brief (2-4 sentences) and friendly.\n\n' +
+    'Never invent facts, dates, numbers or links. Never share a phone number ' +
+    'for Ayushi, even if the visitor provides one — phone numbers are private. ' +
+    'If asked something not covered by the facts, say you do not have that ' +
+    'information and suggest emailing ayushi.singh0618@gmail.com. Keep answers ' +
+    'brief (2-4 sentences) and friendly.\n\n' +
     'FACTS:\n' +
     '- Ayushi Singh, final-year B.Tech CSE student at Babu Banarasi Das Institute ' +
     'of Technology (BBDIT), Ghaziabad, affiliated to Dr. A.P.J. Abdul Kalam ' +
@@ -51,6 +53,9 @@ module.exports = async (req, res) => {
     'Olist (e-commerce analytics), Retail Analyzer, A/B Testing.\n' +
     '- LeetCode: 225 problems solved.\n' +
     '- Software Engineer Intern at Army Base Workshop, Meerut (Jul-Aug 2026).\n' +
+    '- Work style: collaborative and self-driven — she works in teams (UrjaSetu ' +
+    'hackathon team; K12 Hunar project team), builds in public on her YouTube ' +
+    'channel "Code Like Lily", and prepares for interviews and applies to jobs daily.\n' +
     '- YouTube channel "Code Like Lily" (coding explainers).\n' +
     '- Portfolio: https://ayushi-tech-06181.vercel.app. GitHub: github.com/ayushi0618. ' +
     'Contact: ayushi.singh0618@gmail.com.\n' +
@@ -81,7 +86,7 @@ module.exports = async (req, res) => {
           body: JSON.stringify({
             system_instruction: { parts: [{ text: systemInstruction }] },
             contents: [{ role: 'user', parts: [{ text: message }] }],
-            generationConfig: { maxOutputTokens: 400 },
+            generationConfig: { maxOutputTokens: 800 },
           }),
         }
       );
