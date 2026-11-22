@@ -459,7 +459,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showTyping() {
       var t = document.createElement('div');
       t.className = 'pb-chat-typing';
-      t.setAttribute('aria-label', 'Assistant is typing');
+      t.setAttribute('aria-label', 'AI assistant is typing');
       t.innerHTML = '<span></span><span></span><span></span>';
       messagesEl.appendChild(t);
       messagesEl.scrollTop = messagesEl.scrollHeight;
@@ -511,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (open) {
         if (!greeted) {
           greeted = true;
-          addMsg('Hi! I can answer questions about Ayushi — her projects, skills, education, experience, and how to contact her. What would you like to know?', 'bot');
+          addMsg('Hi! I\'m Ayushi\'s AI assistant — ask me about her projects, skills, education, experience, and how to contact her.', 'bot');
         }
         input.focus();
       }

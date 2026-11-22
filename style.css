@@ -3288,6 +3288,7 @@ body.vapour-lock {
   font-family: var(--font-main);
 }
 .pb-chat-launcher {
+  position: relative;
   width: 58px;
   height: 58px;
   border-radius: 50%;
@@ -3481,4 +3482,23 @@ body.vapour-lock {
 @media (max-width: 480px) {
   .pb-chat-root { right: 12px; bottom: 12px; }
   .pb-chat-panel { bottom: 66px; }
+}
+
+/* AI badge on the chat launcher: marks the button as an AI box even when closed. */
+.pb-chat-launcher-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #22d3ee;
+  color: #082f49;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 22px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
 }
