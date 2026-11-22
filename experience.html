@@ -378,6 +378,36 @@
     </div>
   </div>
 
+  <!-- ===== PORTFOLIO CHAT: Ask about Ayushi ===== -->
+  <div class="pb-chat-root">
+    <button type="button" class="pb-chat-launcher" id="pb-chat-launcher" aria-label="Ask about Ayushi" aria-expanded="false" aria-controls="pb-chat-panel">
+      <span class="pb-chat-launcher-icon" aria-hidden="true">&#128172;</span>
+      <span class="pb-chat-launcher-close" aria-hidden="true">&times;</span>
+    </button>
+    <section class="pb-chat-panel" id="pb-chat-panel" aria-label="Ask about Ayushi" hidden>
+      <header class="pb-chat-head">
+        <div class="pb-chat-head-text">
+          <h3 class="pb-chat-title">Ask about Ayushi</h3>
+          <p class="pb-chat-sub">Recruiter Q&amp;A &middot; answers from her portfolio</p>
+        </div>
+        <button type="button" class="pb-chat-close" id="pb-chat-close" aria-label="Close chat">&times;</button>
+      </header>
+      <div class="pb-chat-messages" id="pb-chat-messages" aria-live="polite"></div>
+      <div class="pb-chat-chips" id="pb-chat-chips">
+        <button type="button" class="pb-chat-chip" data-pb-q="What projects has Ayushi built?">Projects</button>
+        <button type="button" class="pb-chat-chip" data-pb-q="What are Ayushi's skills?">Skills</button>
+        <button type="button" class="pb-chat-chip" data-pb-q="When does Ayushi graduate?">Graduation</button>
+        <button type="button" class="pb-chat-chip" data-pb-q="How can I contact Ayushi?">Contact</button>
+        <button type="button" class="pb-chat-chip" data-pb-q="How many LeetCode problems has Ayushi solved?">LeetCode</button>
+      </div>
+      <form class="pb-chat-form" id="pb-chat-form">
+        <input type="text" class="pb-chat-input" id="pb-chat-input" placeholder="Ask about skills, projects, experience&hellip;" autocomplete="off" maxlength="1000" aria-label="Your question">
+        <button type="submit" class="pb-chat-send" id="pb-chat-send" aria-label="Send question">&#10148;</button>
+      </form>
+      <p class="pb-chat-note" id="pb-chat-note" role="status"></p>
+    </section>
+  </div>
+
   <script src="intro.js"></script>
   <script src="circular-gallery.js"></script>
   <script src="orbital-timeline.js"></script>

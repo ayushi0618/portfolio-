@@ -402,3 +402,132 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // ===== 11. PORTFOLIO CHAT: Ask about Ayushi (Gemini + local FAQ fallback) =====
+  (function () {
+    var root = document.querySelector('.pb-chat-root');
+    var launcher = document.getElementById('pb-chat-launcher');
+    var panel = document.getElementById('pb-chat-panel');
+    var closeBtn = document.getElementById('pb-chat-close');
+    var messagesEl = document.getElementById('pb-chat-messages');
+    var chipsEl = document.getElementById('pb-chat-chips');
+    var form = document.getElementById('pb-chat-form');
+    var input = document.getElementById('pb-chat-input');
+    var sendBtn = document.getElementById('pb-chat-send');
+    var noteEl = document.getElementById('pb-chat-note');
+    if (!root || !launcher || !panel || !form || !input || !messagesEl) return;
+
+    var CONTACT = 'ayushi.singh0618@gmail.com';
+    var greeted = false;
+
+    // --- Local FAQ answers (used when the Gemini backend is not configured
+    // or unreachable). Only facts from Ayushi's portfolio; nothing invented. ---
+    var PB_CHAT_FAQ = [
+      { keys: ['project', 'built', 'portfolio'], answer: 'Ayushi has built BondPoints.ai (a social relationship tracker), Food for Mood AI (food suggestions from emotion detection), Cyber Scanner (scans code repos for vulnerabilities), SnapSplit (bill splitting), Trishul (admin analytics), Olist (e-commerce analytics), Retail Analyzer, and an A/B Testing project. You can see them in the Projects section of this site.' },
+      { keys: ['skill', 'tech', 'stack', 'language', 'framework', 'tool'], answer: 'Her full-stack skills are React, Node.js, Express, TypeScript, JavaScript, Python, MongoDB, SQL and Tailwind CSS. As a data analyst she works with Pandas, NumPy, Matplotlib, Seaborn and Power BI.' },
+      { keys: ['cgpa', 'grade', 'gpa', 'score', 'marks'], answer: 'Ayushi has a CGPA of 8.0 in her B.Tech (Computer Science).' },
+      { keys: ['graduate', 'graduation', 'degree', 'college', 'university', 'education', 'btech', 'b.tech', 'study', 'student'], answer: 'Ayushi is a final-year B.Tech CSE student at Babu Banarasi Das Institute of Technology (BBDIT), Ghaziabad, affiliated to Dr. A.P.J. Abdul Kalam Technical University (AKTU). She graduates in April 2027.' },
+      { keys: ['experience', 'intern', 'internship', 'army'], answer: 'Ayushi was a Software Engineer Intern at Army Base Workshop, Meerut (July-August 2026). She is now looking for full-stack developer and data analyst roles.' },
+      { keys: ['leetcode', 'dsa', 'coding problem', 'algorithm'], answer: 'Ayushi has solved 225 LeetCode problems. She also runs the YouTube channel "Code Like Lily" with coding explainers.' },
+      { keys: ['youtube', 'channel', 'video'], answer: 'Ayushi runs the YouTube channel "Code Like Lily", where she posts coding explainers.' },
+      { keys: ['contact', 'email', 'hire', 'hiring', 'reach', 'phone', 'call'], answer: 'You can reach Ayushi at ayushi.singh0618@gmail.com. She is open to full-stack developer and data analyst roles — you can also use the contact form or book a 15-minute intro call on this page.' },
+      { keys: ['data', 'analyst', 'analytics', 'pandas', 'power bi', 'dashboard'], answer: 'As a data analyst, Ayushi works with Pandas, NumPy, Matplotlib, Seaborn and Power BI. Her analytics projects are Olist (e-commerce analytics), Retail Analyzer and A/B Testing.' },
+      { keys: ['location', 'based', 'where', 'city', 'ghaziabad', 'india'], answer: 'Ayushi is based in Ghaziabad, India.' },
+      { keys: ['salary', 'ctc', 'pay', 'stipend', 'package'], answer: 'Ayushi has not published a salary expectation. For hiring discussions, please email her at ayushi.singh0618@gmail.com.' }
+    ];
+
+    function pbFaqAnswer(q) {
+      var text = q.toLowerCase();
+      var best = null, bestScore = 0;
+      PB_CHAT_FAQ.forEach(function (item) {
+        var score = 0;
+        item.keys.forEach(function (k) { if (text.indexOf(k) !== -1) score += k.length; });
+        if (score > bestScore) { bestScore = score; best = item; }
+      });
+      if (best) return best.answer;
+      return 'I can answer questions about Ayushi\'s projects, skills, education, experience, LeetCode, YouTube channel, location and how to contact her. Try one of the suggestions above, or email ' + CONTACT + '.';
+    }
+
+    function addMsg(text, who) {
+      var div = document.createElement('div');
+      div.className = 'pb-chat-msg pb-chat-msg-' + who;
+      div.textContent = text;
+      messagesEl.appendChild(div);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function showTyping() {
+      var t = document.createElement('div');
+      t.className = 'pb-chat-typing';
+      t.setAttribute('aria-label', 'Assistant is typing');
+      t.innerHTML = '<span></span><span></span><span></span>';
+      messagesEl.appendChild(t);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return t;
+    }
+
+    async function ask(question) {
+      var q = String(question || '').trim().slice(0, 1000);
+      if (!q) return;
+      addMsg(q, 'user');
+      input.value = '';
+      var typing = showTyping();
+      sendBtn.disabled = true;
+      var note = '';
+      try {
+        var res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: q })
+        });
+        if (res.ok) {
+          var data = await res.json();
+          typing.remove();
+          addMsg(String((data && data.reply) || '').trim() || 'Sorry, I could not answer that.', 'bot');
+        } else if (res.status === 501) {
+          typing.remove();
+          addMsg(pbFaqAnswer(q), 'bot');
+          note = 'Answering from Ayushi\'s portfolio info (AI chat not connected yet).';
+        } else {
+          typing.remove();
+          addMsg(pbFaqAnswer(q), 'bot');
+          note = 'The AI service is unavailable right now — answering from her portfolio info.';
+        }
+      } catch (err) {
+        typing.remove();
+        addMsg(pbFaqAnswer(q), 'bot');
+        note = 'Could not reach the AI service — answering from her portfolio info.';
+      } finally {
+        sendBtn.disabled = false;
+        if (noteEl) noteEl.textContent = note;
+        input.focus();
+      }
+    }
+
+    function setOpen(open) {
+      panel.hidden = !open;
+      root.classList.toggle('pb-chat-open', open);
+      launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        if (!greeted) {
+          greeted = true;
+          addMsg('Hi! I can answer questions about Ayushi — her projects, skills, education, experience, and how to contact her. What would you like to know?', 'bot');
+        }
+        input.focus();
+      }
+    }
+
+    launcher.addEventListener('click', function () { setOpen(panel.hidden); });
+    if (closeBtn) closeBtn.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.hidden) setOpen(false);
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      ask(input.value);
+    });
+    if (chipsEl) chipsEl.addEventListener('click', function (e) {
+      var chip = e.target.closest ? e.target.closest('.pb-chat-chip') : null;
+      if (chip && chip.getAttribute('data-pb-q')) ask(chip.getAttribute('data-pb-q'));
+    });
+  })();
