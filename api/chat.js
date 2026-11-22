@@ -4,7 +4,10 @@
 //                    (https://aistudio.google.com). Without it the function
 //                    answers 501 and the site's chat widget falls back to its
 //                    built-in FAQ answers, so the widget still works.
-// The API key is sent to Google as a query param; it is never logged.
+// The API key is sent to Google in the x-goog-api-key header; it is never
+// logged and never included in any response. When Gemini returns an error,
+// its HTTP status and error message are included in the 502 response so the
+// failure is diagnosable (e.g. API not enabled, bad key, unknown model).
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -54,17 +57,20 @@ module.exports = async (req, res) => {
     '- Open to full-stack developer and data analyst roles. Based in Ghaziabad, India.';
 
   const models = ['gemini-2.0-flash', 'gemini-1.5-flash'];
-  let lastStatus = 502;
+  let lastError = { status: 502, detail: 'Chat service error' };
 
   for (const model of models) {
     let r;
     try {
       r = await fetch(
         'https://generativelanguage.googleapis.com/v1beta/models/' + model +
-          ':generateContent?key=' + encodeURIComponent(apiKey),
+          ':generateContent',
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': apiKey,
+          },
           body: JSON.stringify({
             system_instruction: { parts: [{ text: systemInstruction }] },
             contents: [{ role: 'user', parts: [{ text: message }] }],
@@ -73,23 +79,32 @@ module.exports = async (req, res) => {
         }
       );
     } catch {
-      return res.status(502).json({ error: 'Chat service unreachable' });
+      lastError = { status: 502, detail: 'Chat service unreachable' };
+      break;
     }
 
-    if (r.status === 404 && model !== models[models.length - 1]) {
-      // Model name not available on this account: try the next one.
-      continue;
-    }
     if (!r.ok) {
-      lastStatus = r.status;
-      return res.status(502).json({ error: 'Chat service error' });
+      lastError = { status: r.status, detail: await geminiErrorDetail(r) };
+      if (r.status === 404 && model !== models[models.length - 1]) {
+        // Model name not available on this account: try the next one.
+        continue;
+      }
+      return res.status(502).json({
+        error: 'Chat service error',
+        status: lastError.status,
+        detail: lastError.detail,
+      });
     }
 
     let data;
     try {
       data = await r.json();
     } catch {
-      return res.status(502).json({ error: 'Chat service error' });
+      return res.status(502).json({
+        error: 'Chat service error',
+        status: r.status,
+        detail: 'Gemini returned an unreadable response',
+      });
     }
 
     const reply =
@@ -102,10 +117,32 @@ module.exports = async (req, res) => {
       String(data.candidates[0].content.parts[0].text || '').trim();
 
     if (!reply) {
-      return res.status(502).json({ error: 'Chat service error' });
+      return res.status(502).json({
+        error: 'Chat service error',
+        status: r.status,
+        detail: 'Gemini returned no reply text',
+      });
     }
     return res.status(200).json({ reply: reply });
   }
 
-  return res.status(502).json({ error: 'Chat service error', status: lastStatus });
+  return res.status(502).json({
+    error: 'Chat service error',
+    status: lastError.status,
+    detail: lastError.detail,
+  });
 };
+
+// Extract Gemini's error message text from a failed response.
+// Returns a short string; never includes the API key.
+async function geminiErrorDetail(r) {
+  try {
+    const data = await r.json();
+    if (data && data.error && typeof data.error.message === 'string') {
+      return data.error.message.slice(0, 500);
+    }
+    return JSON.stringify(data).slice(0, 500);
+  } catch {
+    return 'Gemini returned HTTP ' + r.status;
+  }
+}
