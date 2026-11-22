@@ -3278,8 +3278,9 @@ body.vapour-lock {
 .bk-note { margin-top: 12px; font-size: 13px; line-height: 1.5; color: #b91c1c; min-height: 20px; }
 .bk-note:empty { display: none; }
 
-/* ===== PORTFOLIO CHAT: Ask about Ayushi (floating recruiter Q&A) ===== */
-/* Navy/cyan widget. Own pb-chat-* prefix; never reuse cg-* or cwg-* here. */
+/* ===== PORTFOLIO CHAT: Ask AI about Ayushi (floating recruiter Q&A) ===== */
+/* Theme-matched widget: black surfaces + purple→pink→orange gradient accent. */
+/* Own pb-chat-* prefix; never reuse cg-* or cwg-* here. */
 .pb-chat-root {
   position: fixed;
   right: 20px;
@@ -3292,13 +3293,13 @@ body.vapour-lock {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  border: 1px solid rgba(34, 211, 238, 0.55);
-  background: linear-gradient(135deg, #0a2540, #123a6d);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: var(--gradient-accent);
   color: #fff;
   font-size: 26px;
   line-height: 1;
   cursor: pointer;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(34, 211, 238, 0.12);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 0 4px rgba(139, 92, 246, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3307,10 +3308,10 @@ body.vapour-lock {
 }
 .pb-chat-launcher:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 0 6px rgba(34, 211, 238, 0.18);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), 0 0 0 6px rgba(236, 72, 153, 0.28);
 }
 .pb-chat-launcher:focus-visible {
-  outline: 2px solid #22d3ee;
+  outline: 2px solid var(--accent-purple);
   outline-offset: 3px;
 }
 .pb-chat-launcher-close { display: none; font-size: 30px; }
@@ -3324,12 +3325,12 @@ body.vapour-lock {
   height: min(520px, calc(100vh - 120px));
   display: flex;
   flex-direction: column;
-  background: #0a1a2e;
-  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: var(--bg-dark);
+  border: 1px solid rgba(139, 92, 246, 0.45);
   border-radius: 18px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
   overflow: hidden;
-  color: #e8f1f8;
+  color: var(--text-light);
 }
 .pb-chat-panel[hidden] { display: none; }
 .pb-chat-head {
@@ -3338,8 +3339,8 @@ body.vapour-lock {
   justify-content: space-between;
   gap: 12px;
   padding: 16px 16px 12px;
-  background: linear-gradient(135deg, #0a2540, #0e3a5c);
-  border-bottom: 1px solid rgba(34, 211, 238, 0.25);
+  background: var(--gradient-accent);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 .pb-chat-title {
   margin: 0;
@@ -3351,7 +3352,7 @@ body.vapour-lock {
   margin: 3px 0 0;
   font-size: 12px;
   line-height: 1.4;
-  color: #9fd8e8;
+  color: rgba(255, 255, 255, 0.85);
 }
 .pb-chat-close {
   flex: none;
@@ -3365,7 +3366,7 @@ body.vapour-lock {
   line-height: 1;
   cursor: pointer;
 }
-.pb-chat-close:hover { border-color: #22d3ee; color: #22d3ee; }
+.pb-chat-close:hover { border-color: var(--accent-pink); color: var(--accent-pink); }
 .pb-chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -3374,7 +3375,7 @@ body.vapour-lock {
   flex-direction: column;
   gap: 10px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(34, 211, 238, 0.4) transparent;
+  scrollbar-color: rgba(139, 92, 246, 0.5) transparent;
 }
 .pb-chat-msg {
   max-width: 88%;
@@ -3385,22 +3386,22 @@ body.vapour-lock {
   white-space: pre-wrap;
   word-break: break-word;
 }
-.pb-chat-msg a { color: #22d3ee; text-decoration: underline; }
+.pb-chat-msg a { color: var(--accent-pink); text-decoration: underline; }
 .pb-chat-msg-bot {
   align-self: flex-start;
-  background: #12324f;
-  color: #e8f1f8;
+  background: #1f1b2e;
+  color: var(--text-light);
   border-bottom-left-radius: 4px;
 }
 .pb-chat-msg-user {
   align-self: flex-end;
-  background: #0891b2;
+  background: var(--gradient-accent);
   color: #fff;
   border-bottom-right-radius: 4px;
 }
 .pb-chat-typing {
   align-self: flex-start;
-  background: #12324f;
+  background: #1f1b2e;
   border-radius: 14px;
   border-bottom-left-radius: 4px;
   padding: 12px 14px;
@@ -3411,11 +3412,11 @@ body.vapour-lock {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #22d3ee;
+  background: var(--accent-purple);
   animation: pb-chat-blink 1.2s infinite;
 }
-.pb-chat-typing span:nth-child(2) { animation-delay: 0.2s; }
-.pb-chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+.pb-chat-typing span:nth-child(2) { background: var(--accent-pink); animation-delay: 0.2s; }
+.pb-chat-typing span:nth-child(3) { background: var(--accent-orange); animation-delay: 0.4s; }
 @keyframes pb-chat-blink {
   0%, 80%, 100% { opacity: 0.3; }
   40% { opacity: 1; }
@@ -3429,53 +3430,53 @@ body.vapour-lock {
 .pb-chat-chip {
   padding: 7px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(34, 211, 238, 0.5);
+  border: 1px solid rgba(139, 92, 246, 0.55);
   background: transparent;
-  color: #a5e3f2;
+  color: #d6c8ff;
   font-family: inherit;
   font-size: 12.5px;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 }
-.pb-chat-chip:hover { background: rgba(34, 211, 238, 0.15); color: #fff; }
+.pb-chat-chip:hover { background: rgba(139, 92, 246, 0.18); color: #fff; }
 .pb-chat-form {
   display: flex;
   gap: 8px;
   padding: 10px 14px 12px;
-  border-top: 1px solid rgba(34, 211, 238, 0.2);
+  border-top: 1px solid rgba(139, 92, 246, 0.25);
 }
 .pb-chat-input {
   flex: 1;
   min-width: 0;
   padding: 11px 13px;
   border-radius: 10px;
-  border: 1px solid rgba(34, 211, 238, 0.35);
-  background: #0d2138;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  background: #141414;
   color: #fff;
   font-family: inherit;
   font-size: 14px;
   outline: none;
 }
-.pb-chat-input::placeholder { color: #6b8ca3; }
-.pb-chat-input:focus { border-color: #22d3ee; }
+.pb-chat-input::placeholder { color: #8a8a8a; }
+.pb-chat-input:focus { border-color: var(--accent-purple); }
 .pb-chat-send {
   flex: none;
   width: 44px;
   border-radius: 10px;
   border: none;
-  background: #0891b2;
+  background: var(--gradient-accent);
   color: #fff;
   font-size: 18px;
   cursor: pointer;
 }
-.pb-chat-send:hover { background: #06b6d4; }
+.pb-chat-send:hover { filter: brightness(1.12); }
 .pb-chat-send:disabled { opacity: 0.55; cursor: default; }
 .pb-chat-note {
   margin: 0;
   padding: 0 14px 10px;
   font-size: 11.5px;
   line-height: 1.4;
-  color: #7fa3b8;
+  color: #9a9a9a;
   min-height: 0;
 }
 .pb-chat-note:empty { display: none; }
@@ -3493,8 +3494,8 @@ body.vapour-lock {
   height: 22px;
   padding: 0 5px;
   border-radius: 999px;
-  background: #22d3ee;
-  color: #082f49;
+  background: var(--gradient-accent);
+  color: #fff;
   font-size: 11px;
   font-weight: 800;
   line-height: 22px;
