@@ -86,7 +86,9 @@ module.exports = async (req, res) => {
           body: JSON.stringify({
             system_instruction: { parts: [{ text: systemInstruction }] },
             contents: [{ role: 'user', parts: [{ text: message }] }],
-            generationConfig: { maxOutputTokens: 800 },
+            // 2000 tokens: gemini-2.5-flash spends part of this budget on
+            // internal reasoning, so a small cap can cut short answers off.
+            generationConfig: { maxOutputTokens: 2000 },
           }),
         }
       );
@@ -119,14 +121,21 @@ module.exports = async (req, res) => {
       });
     }
 
-    const reply =
-      data &&
-      data.candidates &&
-      data.candidates[0] &&
-      data.candidates[0].content &&
-      data.candidates[0].content.parts &&
-      data.candidates[0].content.parts[0] &&
-      String(data.candidates[0].content.parts[0].text || '').trim();
+    // Join ALL parts: Gemini sometimes splits one reply across several parts,
+    // and taking only parts[0] can cut the answer mid-sentence.
+    const parts =
+      (data &&
+        data.candidates &&
+        data.candidates[0] &&
+        data.candidates[0].content &&
+        data.candidates[0].content.parts) ||
+      [];
+    const reply = parts
+      .map(function (p) {
+        return String((p && p.text) || '');
+      })
+      .join('')
+      .trim();
 
     if (!reply) {
       return res.status(502).json({
